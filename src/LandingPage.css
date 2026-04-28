@@ -1055,7 +1055,11 @@
   }
 
   .hero-overlay .container {
-    padding-top: clamp(140px, 11.77vw, 190px);
+    padding-top: clamp(160px, 13vw, 210px);
+  }
+
+  .hero-phone {
+    top: 18%;
   }
 
   .hero::after {
