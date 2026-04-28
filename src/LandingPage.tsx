@@ -728,21 +728,62 @@ function Footer({ t }: { t: T }) {
 // PAGE
 // ============================================================
 
+const PASSWORD = 'hsk9843hksjffsj78687yugwef897fger';
+
+function PasswordGate({ children }: { children: React.ReactNode }) {
+  const [unlocked, setUnlocked] = useState(() => sessionStorage.getItem('pw') === '1');
+  const [value, setValue] = useState('');
+  const [error, setError] = useState(false);
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (value === PASSWORD) {
+      sessionStorage.setItem('pw', '1');
+      setUnlocked(true);
+    } else {
+      setError(true);
+      setValue('');
+    }
+  }
+
+  if (unlocked) return <>{children}</>;
+
+  return (
+    <div className="pw-gate">
+      <form className="pw-form" onSubmit={handleSubmit}>
+        <img src={logoImg} alt="Persona" className="pw-logo" />
+        <input
+          className="pw-input"
+          type="password"
+          placeholder="Enter password"
+          value={value}
+          onChange={(e) => { setValue(e.target.value); setError(false); }}
+          autoFocus
+        />
+        {error && <p className="pw-error">Incorrect password</p>}
+        <button className="btn-primary" type="submit">Enter</button>
+      </form>
+    </div>
+  );
+}
+
 export default function LandingPage() {
   const [lang, setLang] = useState<Lang>('en');
   const t = translations[lang];
 
   return (
-    <div>
-      <Navbar lang={lang} setLang={setLang} t={t} />
-      <main>
-        <HeroSection t={t} />
-        <TalentsSection t={t} />
-        <PersonaSection t={t} />
-        <HowItWorksSection t={t} />
-        <NewsletterSection t={t} />
-      </main>
-      <Footer t={t} />
-    </div>
+    <PasswordGate>
+      <div>
+        <Navbar lang={lang} setLang={setLang} t={t} />
+        <main>
+          <HeroSection t={t} />
+          <TalentsSection t={t} />
+          <PersonaSection t={t} />
+          <HowItWorksSection t={t} />
+          <NewsletterSection t={t} />
+        </main>
+        <Footer t={t} />
+      </div>
+    </PasswordGate>
   );
 }

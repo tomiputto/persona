@@ -1,4 +1,61 @@
 /* ============================================================
+   PASSWORD GATE
+   ============================================================ */
+.pw-gate {
+  min-height: 100svh;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pw-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 320px;
+  padding: 0 24px;
+}
+
+.pw-logo {
+  height: 20px;
+  width: auto;
+  margin-bottom: 12px;
+}
+
+.pw-input {
+  width: 100%;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  border-radius: 4px;
+  padding: 10px 16px;
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  color: #fff;
+  outline: none;
+  height: 42px;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+
+.pw-input:focus {
+  border-color: var(--accent);
+}
+
+.pw-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.pw-error {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  color: #ff6b6b;
+  margin: 0;
+}
+
+/* ============================================================
    DESIGN TOKENS
    ============================================================ */
 :root {
