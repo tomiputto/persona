@@ -1,0 +1,99 @@
+
+<canvas id="c" style="display:block;width:100%;height:600px;background:#000;border-radius:12px;"></canvas>
+<script>
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+let W, H, t = 0;
+
+function resize() {
+  const rect = canvas.getBoundingClientRect();
+  W = canvas.width = rect.width * devicePixelRatio;
+  H = canvas.height = rect.height * devicePixelRatio;
+  canvas.style.width = rect.width + 'px';
+  canvas.style.height = rect.height + 'px';
+}
+
+function noise(x, y, t) {
+  const s = Math.sin(x * 2.1 + t * 0.7) * Math.cos(y * 1.8 - t * 0.5);
+  const s2 = Math.sin(x * 3.3 - t * 0.4 + y * 1.2) * 0.5;
+  const s3 = Math.cos(x * 1.5 + y * 2.7 + t * 0.9) * 0.3;
+  return (s + s2 + s3) / 1.8;
+}
+
+function blobPoint(angle, t, baseR, seed, warp) {
+  const nx = Math.cos(angle + seed) * 1.2;
+  const ny = Math.sin(angle + seed) * 1.2;
+  const n = noise(nx, ny, t + seed);
+  const pulse = 1 + Math.sin(t * 1.1 + seed) * 0.08 + Math.sin(t * 0.6 + seed * 0.5) * 0.05;
+  return baseR * pulse * (1 + n * (warp || 0.32));
+}
+
+function drawBlob(cx, cy, baseR, t, alpha, hue, sat, light, seed, scaleY, blur, warp) {
+  if (blur) ctx.filter = `blur(${blur}px)`;
+  const steps = 180;
+  ctx.beginPath();
+  for (let i = 0; i <= steps; i++) {
+    const angle = (i / steps) * Math.PI * 2;
+    const r = blobPoint(angle, t, baseR, seed, warp);
+    const x = cx + Math.cos(angle) * r;
+    const y = cy + Math.sin(angle) * r * scaleY;
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+  const g = ctx.createRadialGradient(cx - baseR * 0.2, cy - baseR * 0.15, 0, cx, cy, baseR * 1.5);
+  g.addColorStop(0, `hsla(${hue+15},${sat}%,${light+18}%,${alpha})`);
+  g.addColorStop(0.45, `hsla(${hue},${sat}%,${light}%,${alpha * 0.9})`);
+  g.addColorStop(1, `hsla(${hue-10},${sat-10}%,${light-12}%,0)`);
+  ctx.fillStyle = g;
+  ctx.fill();
+  ctx.filter = 'none';
+}
+
+function drawGlow(cx, cy, baseR, t) {
+  const pulse = 1 + Math.sin(t * 1.1) * 0.1;
+  for (let i = 3; i >= 1; i--) {
+    const r = baseR * (1.6 + i * 0.8) * pulse;
+    const g = ctx.createRadialGradient(cx, cy, baseR * 0.3, cx, cy, r);
+    g.addColorStop(0, `rgba(255,90,15,${0.11 / i})`);
+    g.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.fillStyle = g;
+    ctx.fill();
+  }
+}
+
+function drawRings(cx, cy, baseR, t) {
+  const pulse = 1 + Math.sin(t * 1.1) * 0.06;
+  [2.2, 3.2, 4.4].forEach((mult, i) => {
+    const r = baseR * mult * pulse;
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.strokeStyle = `rgba(255,110,30,${0.06 - i * 0.012})`;
+    ctx.lineWidth = 0.8;
+    ctx.stroke();
+  });
+}
+
+function loop() {
+  t += 0.012;
+  ctx.fillStyle = 'rgba(0,0,0,0.25)';
+  ctx.fillRect(0, 0, W, H);
+
+  const cx = W * 0.5, cy = H * 0.5;
+  const baseR = Math.min(W, H) * 0.26;
+
+  drawGlow(cx, cy, baseR, t);
+  drawRings(cx, cy, baseR, t);
+  drawBlob(cx, cy, baseR * 1.9, t * 0.35 + 2.0, 0.13, 8, 85, 28, 1.1, 0.8, 28, 0.22);
+  drawBlob(cx, cy, baseR * 1.28, t * 0.7 + 1.5, 0.20, 10, 90, 35, 0, 0.85, 18, 0.32);
+  drawBlob(cx, cy, baseR, t, 0.78, 18, 100, 45, 0, 0.85, 10, 0.32);
+  drawBlob(cx, cy, baseR * 0.55, t * 1.3, 0.92, 30, 100, 58, 0, 0.85, 5, 0.32);
+
+  requestAnimationFrame(loop);
+}
+
+resize();
+window.addEventListener('resize', resize);
+loop();
+</script>
