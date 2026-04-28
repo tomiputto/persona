@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import phoneInHand from '../phone-in-hand.png';
 import avatarImg from '../avatar.png';
 import bottomBg from '../Bottom.png';
+import bgImg from '../BG.png';
 import woman1Img from '../woman1.png';
 import woman2Img from '../woman2.png';
 import woman3Img from '../woman3.png';
@@ -557,7 +558,9 @@ function PersonaSection({ t }: { t: T }) {
           <h2 className="section-title-accent" id="persona-heading">{t.persona.heading}</h2>
           <p className="persona-description">{t.persona.description}</p>
         </div>
-        <div className="persona-video-wrap" onClick={togglePlay}>
+        <div className="persona-video-outer">
+          <img src={bgImg} alt="" className="persona-bg" aria-hidden="true" />
+          <div className="persona-video-wrap" onClick={togglePlay}>
           <video
             ref={videoRef}
             className="persona-video"
@@ -573,6 +576,7 @@ function PersonaSection({ t }: { t: T }) {
               </svg>
             </button>
           )}
+          </div>
         </div>
       </div>
     </section>

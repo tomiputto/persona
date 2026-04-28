@@ -571,7 +571,31 @@
    THIS IS PERSONA
    ============================================================ */
 .persona-section {
+  position: relative;
+  overflow: hidden;
   padding: 40px 0 180px;
+}
+
+.persona-video-outer {
+  position: relative;
+}
+
+.persona-bg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 140%;
+  max-width: none;
+  height: auto;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+.persona-video-wrap {
+  position: relative;
+  z-index: 1;
 }
 
 .persona-text {
