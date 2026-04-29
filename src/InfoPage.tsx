@@ -47,7 +47,19 @@ const INFO_TRANSLATIONS = {
         a: 'You can reach our support team at support@persona.app. We aim to respond within 24 hours on business days.',
       },
     ],
-    company: 'Persona Entertainment Oy is a Finnish startup building the future of personal connections through AI-powered experiences.',
+    company: {
+      slogan: 'Company built for meaningful connections',
+      description: 'Persona redefines how we communicate across time and place. We make it possible to interact with the unattainable, by combining cutting edge technology, emotional intelligence and human connections.',
+      foundersHeading: 'Persona founders',
+      founders: [
+        { name: 'Susanna Jääskeläinen', role: 'CEO', photo: susannaImg },
+        { name: 'Emmi Sainio', role: 'CMO', photo: emmiImg },
+      ],
+      contactTitle: 'Interested in hearing more?',
+      contactBtn: 'Contact us',
+      legalTitle: 'Legal conditions',
+      legalBtn: 'Terms of service',
+    },
     support: {
       techTitle: 'Technical support',
       techPhone: '+358 40 716 0909',
@@ -110,7 +122,19 @@ const INFO_TRANSLATIONS = {
         a: 'Voit ottaa yhteyttä tukitiimiimme osoitteessa support@persona.app. Pyrimme vastaamaan 24 tunnin kuluessa arkipäivisin.',
       },
     ],
-    company: 'Persona Entertainment Oy on suomalainen startup, joka rakentaa henkilökohtaisten yhteyksien tulevaisuutta tekoälypohjaisten kokemusten avulla.',
+    company: {
+      slogan: 'Yritys rakennettu merkityksellisiä yhteyksiä varten',
+      description: 'Persona määrittelee uudelleen, kuinka kommunikoimme ajasta ja paikasta riippumatta. Teemme mahdolliseksi vuorovaikuttaa tavoittamattomien kanssa yhdistämällä huippuluokan teknologiaa, tunneälyä ja inhimillisiä yhteyksiä.',
+      foundersHeading: 'Personan perustajat',
+      founders: [
+        { name: 'Susanna Jääskeläinen', role: 'Toimitusjohtaja', photo: susannaImg },
+        { name: 'Emmi Sainio', role: 'Markkinointijohtaja', photo: emmiImg },
+      ],
+      contactTitle: 'Haluatko kuulla lisää?',
+      contactBtn: 'Ota yhteyttä',
+      legalTitle: 'Juridiset ehdot',
+      legalBtn: 'Käyttöehdot',
+    },
     support: {
       techTitle: 'Tekninen tuki',
       techPhone: '+358 40 716 0909',
@@ -186,6 +210,61 @@ function FaqList({ items }: { items: { q: string; a: string }[] }) {
 
 function TextContent({ text }: { text: string }) {
   return <p className="info-text-content">{text}</p>;
+}
+
+type CompanyData = {
+  slogan: string;
+  description: string;
+  foundersHeading: string;
+  founders: { name: string; role: string; photo: string }[];
+  contactTitle: string;
+  contactBtn: string;
+  legalTitle: string;
+  legalBtn: string;
+};
+
+function CompanyContent({ data }: { data: CompanyData }) {
+  return (
+    <div className="company-content">
+      <div className="company-slogan">
+        <h2 className="company-slogan-title">{data.slogan}</h2>
+        <p className="company-slogan-body">{data.description}</p>
+      </div>
+
+      <h3 className="company-founders-heading">{data.foundersHeading}</h3>
+
+      <div className="company-founders-grid">
+        {data.founders.map((f) => (
+          <div key={f.name} className="company-founder-card">
+            <div className="company-founder-avatar-wrap">
+              <img src={f.photo} alt={f.name} className="company-founder-avatar" />
+            </div>
+            <p className="company-founder-name">{f.name}</p>
+            <p className="company-founder-role">{f.role}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="company-cta-grid">
+        <div className="company-cta-card">
+          <svg className="company-cta-icon" width="24" height="24" viewBox="0 0 24 24" fill="#FFDDB2" aria-hidden="true">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+          <p className="company-cta-title">{data.contactTitle}</p>
+          <button className="company-cta-btn">{data.contactBtn}</button>
+        </div>
+        <div className="company-cta-card">
+          <p className="company-cta-title">{data.legalTitle}</p>
+          <button className="company-cta-btn company-cta-btn--icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M8 3l5 5-5 5" stroke="#2B2621" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            {data.legalBtn}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 type NewsItem = { date: string; headline: string; body: string };
@@ -294,7 +373,7 @@ export default function InfoPage({ lang }: { lang: Lang }) {
   function renderContent() {
     switch (activeTab) {
       case 'faq':       return <FaqList items={t.faq} />;
-      case 'company':   return <TextContent text={t.company} />;
+      case 'company':   return <CompanyContent data={t.company} />;
       case 'support':   return <SupportContent data={t.support} />;
       case 'news':      return <NewsContent items={t.news} shareLabel={t.shareLabel} />;
       case 'investors': return <TextContent text={t.investors} />;

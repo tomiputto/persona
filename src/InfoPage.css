@@ -352,6 +352,158 @@
 }
 
 /* ============================================================
+   COMPANY
+   ============================================================ */
+.company-content {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  padding-top: 16px;
+}
+
+.company-slogan {
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+}
+
+.company-slogan-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 400;
+  font-size: clamp(40px, 5vw, 72px);
+  line-height: 1.2;
+  color: var(--accent);
+  margin: 0;
+  text-align: center;
+}
+
+.company-slogan-body {
+  font-family: 'Syne', sans-serif;
+  font-weight: 400;
+  font-size: clamp(20px, 2.5vw, 32px);
+  line-height: 1.375;
+  letter-spacing: 0.25px;
+  color: #fff;
+  margin: 0;
+  text-align: center;
+}
+
+.company-founders-heading {
+  font-family: 'Syne', sans-serif;
+  font-weight: 400;
+  font-size: clamp(32px, 3.5vw, 44px);
+  line-height: 1.14;
+  color: var(--accent);
+  margin: 0;
+  text-align: center;
+}
+
+.company-founders-grid {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.company-founder-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 320px;
+}
+
+.company-founder-avatar-wrap {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.company-founder-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.company-founder-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 40px;
+  letter-spacing: 0.25px;
+  color: #fff;
+  margin: 0;
+  text-align: center;
+}
+
+.company-founder-role {
+  font-family: 'Syne', sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 26px;
+  letter-spacing: -0.2px;
+  color: var(--accent);
+  margin: -16px 0 0;
+  text-align: center;
+}
+
+.company-cta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.company-cta-card {
+  background: rgba(217, 217, 217, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 48px 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.company-cta-icon {
+  display: block;
+}
+
+.company-cta-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 400;
+  font-size: clamp(22px, 2vw, 28px);
+  line-height: 34px;
+  color: #fff;
+  margin: 0;
+  text-align: center;
+}
+
+.company-cta-btn {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #2B2621;
+  background: var(--accent);
+  border: none;
+  border-radius: 100px;
+  padding: 10px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: opacity 0.2s;
+}
+
+.company-cta-btn:hover {
+  opacity: 0.88;
+}
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 768px) {
@@ -425,5 +577,30 @@
   .news-body p {
     font-size: 17px;
     line-height: 26px;
+  }
+
+  .company-cta-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .company-cta-card {
+    padding: 32px 24px;
+  }
+
+  .company-founder-card {
+    width: 260px;
+  }
+
+  .company-founder-avatar-wrap {
+    width: 140px;
+    height: 140px;
+  }
+
+  .company-founder-name {
+    font-size: 22px;
+  }
+
+  .company-founder-role {
+    font-size: 20px;
   }
 }
