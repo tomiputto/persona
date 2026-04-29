@@ -223,7 +223,7 @@ function ChevronDownIcon({ color = 'white' }: { color?: string }) {
 
 function FinnishFlag() {
   return (
-    <svg width="28" height="20" viewBox="0 0 28 20" fill="none" aria-label="Finnish flag">
+    <svg width="22" height="16" viewBox="0 0 28 20" fill="none" aria-label="Finnish flag">
       <rect width="28" height="20" rx="2" fill="white" />
       <rect y="7.5" width="28" height="5" fill="#003580" />
       <rect x="7.5" width="5" height="20" fill="#003580" />
