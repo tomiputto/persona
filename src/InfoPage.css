@@ -455,6 +455,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 32px;
+  margin-top: 48px;
 }
 
 .company-cta-card {
