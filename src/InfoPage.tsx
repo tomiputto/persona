@@ -404,6 +404,11 @@ export default function InfoPage({ lang }: { lang: Lang }) {
             </button>
           ))}
         </nav>
+        {activeTab !== 'company' && (
+          <h2 className="info-tab-heading">
+            {t.tabs.find((tab) => tab.id === activeTab)?.label}
+          </h2>
+        )}
         <div className="info-content">
           {renderContent()}
         </div>
