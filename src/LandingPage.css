@@ -1129,7 +1129,7 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    padding: 100px 32px 40px;
+    padding: 32px 32px 40px;
     gap: 4px;
     z-index: 99;
     transform: translateX(100%);
@@ -1148,7 +1148,39 @@
   .nav-item {
     width: 100%;
     text-align: left;
-    padding: 12px 0;
+    padding: 12px 0 12px 8px;
+  }
+
+  .drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 98;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 24px;
+  }
+
+  .drawer-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    transition: color 0.2s;
+  }
+
+  .drawer-close:hover {
+    color: #fff;
   }
 
   .hamburger {

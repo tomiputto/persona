@@ -432,7 +432,17 @@ function Navbar({ lang, setLang, t, page, setPage }: { lang: Lang; setLang: (l: 
           <span />
         </button>
 
+        {menuOpen && <div className="drawer-backdrop" onClick={() => setMenuOpen(false)} aria-hidden="true" />}
+
         <div className={`nav-links${menuOpen ? ' open' : ''}`} role="menubar">
+          <div className="drawer-header">
+            <img src={logoImg} alt="Persona" className="logo-img" />
+            <button className="drawer-close" onClick={() => setMenuOpen(false)} aria-label="Close menu">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+                <path d="M18 6 6 18M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
           {t.nav.map((label, i) => {
             const isInfo = i === 3;
             const isHome = i === 0;
