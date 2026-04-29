@@ -550,8 +550,12 @@
    ============================================================ */
 @media (max-width: 768px) {
   .info-page {
-    padding-top: 100px;
+    padding-top: 64px;
     padding-bottom: 80px;
+  }
+
+  .info-tab-heading {
+    margin-bottom: 20px;
   }
 
   .info-subnav {
