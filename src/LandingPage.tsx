@@ -914,8 +914,9 @@ export default function LandingPage() {
 
   useEffect(() => {
     const onHashChange = () => {
-      setPage(getPageFromHash());
-      window.scrollTo(0, 0);
+      const newPage = getPageFromHash();
+      setPage(newPage);
+      if (newPage === 'info') window.scrollTo(0, 0);
     };
     window.addEventListener('hashchange', onHashChange);
     return () => window.removeEventListener('hashchange', onHashChange);
