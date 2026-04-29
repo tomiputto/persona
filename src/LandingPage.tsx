@@ -918,6 +918,10 @@ export default function LandingPage() {
     return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [page]);
+
   function navigateTo(newPage: string) {
     if (newPage === 'info') {
       window.location.hash = 'info/company';
