@@ -171,7 +171,7 @@ const TALENT_NAMES = [
   { id: 8, name: 'Liam Foster',  photo: man4Img },
 ];
 
-const FOOTER_LINKS_HREFS = ['#', '#talents', '#my-talents', '#', '#', '#', '#', '#', '#', '#newsletter'];
+const FOOTER_LINKS_HREFS = ['#', '#talents', '#my-talents', '#info/company', '#info/faq', '#info/support', '#info/news', '#info/investors', '#info/careers', '#newsletter'];
 
 // ============================================================
 // ICONS

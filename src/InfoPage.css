@@ -139,8 +139,23 @@
   font-size: 20px;
   line-height: 30px;
   color: rgba(255, 255, 255, 0.75);
-  padding: 0 0 28px 56px;
+  padding: 0 0 12px 56px;
   margin: 0;
+}
+
+.info-faq-link {
+  display: inline-block;
+  font-family: 'Syne', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--accent);
+  text-decoration: none;
+  padding: 0 0 28px 56px;
+  transition: opacity 0.2s;
+}
+
+.info-faq-link:hover {
+  opacity: 0.75;
 }
 
 .info-faq-divider {

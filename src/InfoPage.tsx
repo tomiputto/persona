@@ -33,6 +33,8 @@ const INFO_TRANSLATIONS = {
       {
         q: 'Who is behind the Persona service?',
         a: 'Persona was founded by a team focused on meaningful connections. Our founders bring together expertise in technology and human-centred design to build this experience.',
+        linkText: 'Meet the founders',
+        linkHash: 'info/company',
       },
       {
         q: 'How does Persona ensure security and privacy?',
@@ -45,6 +47,8 @@ const INFO_TRANSLATIONS = {
       {
         q: 'How can I contact customer support?',
         a: 'You can reach us via the Contact us section in the Company tab. We aim to respond to all enquiries as quickly as possible.',
+        linkText: 'Go to Company',
+        linkHash: 'info/company',
       },
     ],
     company: {
@@ -108,6 +112,8 @@ const INFO_TRANSLATIONS = {
       {
         q: 'Kuka on Persona-palvelun takana?',
         a: 'Personan perusti tiimi, joka keskittyy merkityksellisiin yhteyksiin. Perustajamme yhdistävät osaamisen teknologiassa ja ihmiskeskeisessä suunnittelussa tämän kokemuksen rakentamiseksi.',
+        linkText: 'Tutustu perustajiin',
+        linkHash: 'info/company',
       },
       {
         q: 'Miten Persona varmistaa turvallisuuden ja yksityisyyden?',
@@ -120,6 +126,8 @@ const INFO_TRANSLATIONS = {
       {
         q: 'Miten voin ottaa yhteyttä asiakastukeen?',
         a: 'Tavoitat meidät Yritys-välilehden Ota yhteyttä -osion kautta. Pyrimme vastaamaan kaikkiin tiedusteluihin mahdollisimman nopeasti.',
+        linkText: 'Siirry Yritys-sivulle',
+        linkHash: 'info/company',
       },
     ],
     company: {
@@ -181,7 +189,9 @@ function PlusIcon({ open }: { open: boolean }) {
   );
 }
 
-function FaqList({ items }: { items: { q: string; a: string }[] }) {
+type FaqItem = { q: string; a: string; linkText?: string; linkHash?: string };
+
+function FaqList({ items }: { items: FaqItem[] }) {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
@@ -201,6 +211,14 @@ function FaqList({ items }: { items: { q: string; a: string }[] }) {
           <div className={`info-faq-answer-wrap${open === i ? ' open' : ''}`}>
             <div className="info-faq-answer-inner">
               <p className="info-faq-answer">{item.a}</p>
+              {item.linkText && item.linkHash && (
+                <a
+                  href={`#${item.linkHash}`}
+                  className="info-faq-link"
+                >
+                  {item.linkText} →
+                </a>
+              )}
             </div>
           </div>
           <div className="info-faq-divider" />
@@ -253,7 +271,7 @@ function CompanyContent({ data }: { data: CompanyData }) {
             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
           </svg>
           <p className="company-cta-title">{data.contactTitle}</p>
-          <button className="company-cta-btn">{data.contactBtn}</button>
+          <a href="#info/support" className="company-cta-btn">{data.contactBtn}</a>
         </div>
         <div className="company-cta-card">
           <svg className="company-cta-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -263,12 +281,12 @@ function CompanyContent({ data }: { data: CompanyData }) {
             <line x1="6" y1="10" x2="18" y2="10" stroke="#FFDDB2" strokeWidth="1.5" strokeLinecap="round"/>
           </svg>
           <p className="company-cta-title">{data.legalTitle}</p>
-          <button className="company-cta-btn company-cta-btn--icon">
+          <a href="#info/support" className="company-cta-btn company-cta-btn--icon">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M3 8h10M8 3l5 5-5 5" stroke="#2B2621" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
             {data.legalBtn}
-          </button>
+          </a>
         </div>
       </div>
     </div>
