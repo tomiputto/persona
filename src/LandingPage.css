@@ -717,6 +717,28 @@
   color: #fff;
 }
 
+.how-footer-text {
+  font-family: 'Syne', sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 26px;
+  letter-spacing: 0.25px;
+  color: #fff;
+  text-align: center;
+  max-width: 640px;
+  margin: 40px auto 0;
+}
+
+.how-footer-link {
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.how-footer-link:hover {
+  opacity: 0.75;
+}
+
 /* ============================================================
    NEWSLETTER
    ============================================================ */

@@ -56,6 +56,13 @@ const translations = {
         { title: '2. Start the conversation', body: 'Ask questions, share a moment, hear their voice. They respond in real time, just for you.' },
         { title: '3. Feel the connection', body: 'Enjoy your personal interactions that feel real — and are 100% private.' },
       ],
+      footerParts: [
+        'Do you have questions about Persona? Check out our ',
+        ' section or get in touch. If you\'re interested in investing in Persona Entertainment, please visit our ',
+        ' section.',
+      ],
+      footerFaqLabel: 'FAQ',
+      footerInvestorsLabel: 'Investors',
     },
     newsletter: {
       heading: 'Newsletter',
@@ -121,6 +128,13 @@ const translations = {
         { title: '2. Aloita keskustelu', body: 'Kysy kysymyksiä, jaa hetki, kuule heidän äänensä. He vastaavat reaaliajassa, juuri sinulle.' },
         { title: '3. Koe yhteys', body: 'Nauti henkilökohtaisista vuorovaikutuksista, jotka tuntuvat aidoilta — ja ovat 100% yksityisiä.' },
       ],
+      footerParts: [
+        'Onko sinulla kysyttävää Personasta? Tutustu ',
+        '-osioomme tai ota yhteyttä. Jos olet kiinnostunut sijoittamaan Persona Entertainmentiin, vieraile ',
+        '-osiossa.',
+      ],
+      footerFaqLabel: 'UKK',
+      footerInvestorsLabel: 'Sijoittajat',
     },
     newsletter: {
       heading: 'Uutiskirje',
@@ -412,6 +426,11 @@ function Navbar({ lang, setLang, t, page, setPage }: { lang: Lang; setLang: (l: 
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
 
   return (
     <>
@@ -759,6 +778,13 @@ function HowItWorksSection({ t }: { t: T }) {
             </article>
           ))}
         </div>
+        <p className="how-footer-text">
+          {t.how.footerParts[0]}
+          <a href="#info/faq" className="how-footer-link">{t.how.footerFaqLabel}</a>
+          {t.how.footerParts[1]}
+          <a href="#info/investors" className="how-footer-link">{t.how.footerInvestorsLabel}</a>
+          {t.how.footerParts[2]}
+        </p>
       </div>
     </section>
   );
