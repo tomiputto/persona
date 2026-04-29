@@ -64,7 +64,7 @@ const INFO_TRANSLATIONS = {
       techTitle: 'Technical support',
       techPhone: '+358 40 716 0909',
       techNote: 'You can call or send a text message or WhatsApp message',
-      peopleTitle: 'Persona people',
+      peopleTitle: 'Contact Persona people',
       people: [
         { name: 'Susanna', role: 'CEO', email: 'susanna@persona.app', photo: susannaImg },
         { name: 'Emmi',    role: 'CMO', email: 'emmi@persona.app',    photo: emmiImg },
@@ -139,7 +139,7 @@ const INFO_TRANSLATIONS = {
       techTitle: 'Tekninen tuki',
       techPhone: '+358 40 716 0909',
       techNote: 'Voit soittaa tai lähettää tekstiviestin tai WhatsApp-viestin',
-      peopleTitle: 'Persona-tiimi',
+      peopleTitle: 'Ota yhteyttä Persona-tiimiin',
       people: [
         { name: 'Susanna', role: 'Toimitusjohtaja', email: 'susanna@persona.app', photo: susannaImg },
         { name: 'Emmi',    role: 'Markkinointijohtaja', email: 'emmi@persona.app', photo: emmiImg },
