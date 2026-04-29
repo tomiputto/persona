@@ -107,11 +107,25 @@
   color: var(--accent);
 }
 
+.info-faq-answer-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+
+.info-faq-answer-wrap.open {
+  grid-template-rows: 1fr;
+}
+
+.info-faq-answer-inner {
+  overflow: hidden;
+}
+
 .info-faq-answer {
   font-family: 'Syne', sans-serif;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 28px;
+  font-size: 20px;
+  line-height: 30px;
   color: rgba(255, 255, 255, 0.75);
   padding: 0 0 28px 56px;
   margin: 0;
@@ -535,7 +549,7 @@
   }
 
   .info-faq-answer {
-    font-size: 16px;
+    font-size: 17px;
     padding-left: 48px;
   }
 

@@ -198,9 +198,11 @@ function FaqList({ items }: { items: { q: string; a: string }[] }) {
             </span>
             <span>{item.q}</span>
           </button>
-          {open === i && (
-            <p className="info-faq-answer">{item.a}</p>
-          )}
+          <div className={`info-faq-answer-wrap${open === i ? ' open' : ''}`}>
+            <div className="info-faq-answer-inner">
+              <p className="info-faq-answer">{item.a}</p>
+            </div>
+          </div>
           <div className="info-faq-divider" />
         </li>
       ))}
