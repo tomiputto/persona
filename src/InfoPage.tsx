@@ -28,23 +28,23 @@ const INFO_TRANSLATIONS = {
     faq: [
       {
         q: 'What is Persona and how does the service work?',
-        a: 'Persona is a platform that gives you a unique connection with your favourite people, idols and mentors. You can chat with them whenever you want, wherever you are — available 24/7 in your own language.',
+        a: 'Persona is a service that lets you interact with the unattainable through cutting-edge technology, emotional intelligence and human connection. You can have conversations that feel real and are private.',
       },
       {
         q: 'Who is behind the Persona service?',
-        a: 'Persona is built by Persona Entertainment Oy, a Finnish company focused on creating meaningful digital connections between people and their inspirations.',
+        a: 'Persona was founded by a team focused on meaningful connections. Our founders bring together expertise in technology and human-centred design to build this experience.',
       },
       {
         q: 'How does Persona ensure security and privacy?',
-        a: 'All conversations are fully private and encrypted. We never share your personal data with third parties. Your interactions remain 100% confidential.',
+        a: 'Your conversations are private and we take security seriously. We use industry-standard practices to protect your data and ensure that your interactions remain confidential.',
       },
       {
         q: 'Are there any limitations on the content or number of messages in the service?',
-        a: 'Limitations depend on your subscription plan. Free users have access to a limited number of messages per day. Premium subscribers enjoy unlimited interactions.',
+        a: 'Service limits may apply depending on your plan. Check the current terms and your account settings for details on message counts and content guidelines.',
       },
       {
-        q: 'How can I contact customer service?',
-        a: 'You can reach our support team at support@persona.app. We aim to respond within 24 hours on business days.',
+        q: 'How can I contact customer support?',
+        a: 'You can reach us via the Contact us section in the Company tab. We aim to respond to all enquiries as quickly as possible.',
       },
     ],
     company: {
@@ -103,23 +103,23 @@ const INFO_TRANSLATIONS = {
     faq: [
       {
         q: 'Mikä on Persona ja miten palvelu toimii?',
-        a: 'Persona on alusta, joka tarjoaa sinulle ainutlaatuisen yhteyden suosikkihenkilöihisi, idoleihin ja mentoreihin. Voit jutella heidän kanssaan milloin tahansa, missä tahansa — käytettävissä 24/7 omalla kielelläsi.',
+        a: 'Persona on palvelu, jonka avulla voit olla vuorovaikutuksessa tavoittamattomien kanssa huippuluokan teknologian, tunneälyn ja inhimillisen yhteyden kautta. Voit käydä keskusteluja, jotka tuntuvat aidoilta ja ovat yksityisiä.',
       },
       {
         q: 'Kuka on Persona-palvelun takana?',
-        a: 'Personan on rakentanut Persona Entertainment Oy, suomalainen yritys, joka keskittyy merkityksellisten digitaalisten yhteyksien luomiseen ihmisten ja heidän inspiraatioidensa välille.',
+        a: 'Personan perusti tiimi, joka keskittyy merkityksellisiin yhteyksiin. Perustajamme yhdistävät osaamisen teknologiassa ja ihmiskeskeisessä suunnittelussa tämän kokemuksen rakentamiseksi.',
       },
       {
         q: 'Miten Persona varmistaa turvallisuuden ja yksityisyyden?',
-        a: 'Kaikki keskustelut ovat täysin yksityisiä ja salattuja. Emme koskaan jaa henkilötietojasi kolmansille osapuolille. Vuorovaikutuksesi pysyy 100% luottamuksellisena.',
+        a: 'Keskustelusi ovat yksityisiä ja suhtaudumme turvallisuuteen vakavasti. Käytämme alan standardikäytäntöjä tietojesi suojaamiseen ja vuorovaikutustesi luottamuksellisuuden varmistamiseen.',
       },
       {
         q: 'Onko palvelussa rajoituksia sisällön tai viestien määrän suhteen?',
-        a: 'Rajoitukset riippuvat tilauspaketistasi. Ilmaisilla käyttäjillä on pääsy rajoitettuun määrään viestejä päivässä. Premium-tilaajat nauttivat rajattomista vuorovaikutuksista.',
+        a: 'Palvelurajoituksia voi olla voimassa suunnitelmastasi riippuen. Tarkista nykyiset ehdot ja tilisi asetukset saadaksesi tietoja viestimääristä ja sisältöohjeista.',
       },
       {
-        q: 'Miten voin ottaa yhteyttä asiakaspalveluun?',
-        a: 'Voit ottaa yhteyttä tukitiimiimme osoitteessa support@persona.app. Pyrimme vastaamaan 24 tunnin kuluessa arkipäivisin.',
+        q: 'Miten voin ottaa yhteyttä asiakastukeen?',
+        a: 'Tavoitat meidät Yritys-välilehden Ota yhteyttä -osion kautta. Pyrimme vastaamaan kaikkiin tiedusteluihin mahdollisimman nopeasti.',
       },
     ],
     company: {
