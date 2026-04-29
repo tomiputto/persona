@@ -386,6 +386,10 @@ export default function InfoPage({ lang }: { lang: Lang }) {
   const t = INFO_TRANSLATIONS[lang];
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const onHashChange = () => { setActiveTab(getTabFromHash()); window.scrollTo(0, 0); };
     window.addEventListener('hashchange', onHashChange);
     return () => window.removeEventListener('hashchange', onHashChange);
