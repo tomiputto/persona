@@ -913,14 +913,13 @@ export default function LandingPage() {
   const t = translations[lang];
 
   useEffect(() => {
-    const onHashChange = () => setPage(getPageFromHash());
+    const onHashChange = () => {
+      setPage(getPageFromHash());
+      window.scrollTo(0, 0);
+    };
     window.addEventListener('hashchange', onHashChange);
     return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [page]);
 
   function navigateTo(newPage: string) {
     if (newPage === 'info') {
