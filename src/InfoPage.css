@@ -391,7 +391,7 @@
 .company-founders-heading {
   font-family: 'Syne', sans-serif;
   font-weight: 400;
-  font-size: clamp(32px, 3.5vw, 44px);
+  font-size: clamp(24px, 2.5vw, 32px);
   line-height: 1.14;
   color: var(--accent);
   margin: 0;
