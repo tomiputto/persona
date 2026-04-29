@@ -358,7 +358,7 @@ const VALID_TABS: Tab[] = ['company', 'faq', 'support', 'news', 'investors', 'ca
 
 function getTabFromHash(): Tab {
   const part = window.location.hash.split('/')[1] as Tab;
-  return VALID_TABS.includes(part) ? part : 'faq';
+  return VALID_TABS.includes(part) ? part : 'company';
 }
 
 export default function InfoPage({ lang }: { lang: Lang }) {

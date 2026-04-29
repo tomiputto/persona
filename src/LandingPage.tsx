@@ -797,7 +797,7 @@ export default function LandingPage() {
 
   function navigateTo(newPage: string) {
     if (newPage === 'info') {
-      window.location.hash = 'info/faq';
+      window.location.hash = 'info/company';
     } else {
       history.pushState(null, '', window.location.pathname);
     }
