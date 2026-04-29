@@ -1361,6 +1361,10 @@
 @media (max-width: 480px) {
   /* Phone wider on smallest screens */
 
+  .persona-description {
+    margin-top: 10px;
+  }
+
   /* Scale up blob animation */
   .hero-blob {
     transform: translateY(15%) scale(1.5);
