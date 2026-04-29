@@ -1673,3 +1673,9 @@
     to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
   }
 }
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .hero-overlay .container {
+    padding-top: max(100px, 18svh);
+  }
+}
