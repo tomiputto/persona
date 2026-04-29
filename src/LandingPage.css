@@ -126,6 +126,10 @@
   justify-content: center;
 }
 
+.drawer-header {
+  display: none;
+}
+
 .nav-item {
   font-family: 'Syne', sans-serif;
   font-weight: 500;
