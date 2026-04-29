@@ -254,6 +254,12 @@ function CompanyContent({ data }: { data: CompanyData }) {
           <button className="company-cta-btn">{data.contactBtn}</button>
         </div>
         <div className="company-cta-card">
+          <svg className="company-cta-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3v18M3 21h18" stroke="#FFDDB2" strokeWidth="1.5" strokeLinecap="round"/>
+            <path d="M6 10l-3 5h6l-3-5z" fill="#FFDDB2"/>
+            <path d="M18 10l-3 5h6l-3-5z" fill="#FFDDB2"/>
+            <line x1="6" y1="10" x2="18" y2="10" stroke="#FFDDB2" strokeWidth="1.5" strokeLinecap="round"/>
+          </svg>
           <p className="company-cta-title">{data.legalTitle}</p>
           <button className="company-cta-btn company-cta-btn--icon">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
