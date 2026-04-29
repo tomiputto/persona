@@ -12,6 +12,7 @@ import man2Img from '../man2.png';
 import man3Img from '../man3.png';
 import man4Img from '../man4.png';
 import personaVideo from '../PERSONA_INAPP_S_16x9.mp4';
+import videoPoster from '../video-poster.jpg';
 import logoImg from '../logo.png';
 import './LandingPage.css';
 import InfoPage from './InfoPage';
@@ -711,7 +712,9 @@ function PersonaSection({ t }: { t: T }) {
             ref={videoRef}
             className="persona-video"
             src={personaVideo}
+            poster={videoPoster}
             playsInline
+            preload="metadata"
             controls={playing}
             onEnded={() => { if (videoRef.current) videoRef.current.currentTime = 0; setPlaying(false); }}
           />
