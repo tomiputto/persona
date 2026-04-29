@@ -1368,7 +1368,7 @@
 
   /* Preserve top spacing */
   .hero-overlay .container {
-    padding-top: max(80px, 12svh);
+    padding-top: max(110px, 16svh);
   }
 
   /* Smaller logo */
