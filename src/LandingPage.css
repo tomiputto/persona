@@ -1150,9 +1150,9 @@
   }
 
   .lang-toggle--drawer {
-    display: block;
+    display: flex;
     margin-top: 8px;
-    width: 48px;
+    width: auto;
   }
 
   /* Navbar: show btns, logo | btns | hamburger order */
