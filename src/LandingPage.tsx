@@ -14,6 +14,7 @@ import man4Img from '../man4.png';
 import personaVideo from '../PERSONA_INAPP_S_16x9.mp4';
 import logoImg from '../logo.png';
 import './LandingPage.css';
+import InfoPage from './InfoPage';
 
 // ============================================================
 // TRANSLATIONS
@@ -269,7 +270,7 @@ function GooglePlayIcon() {
 // NAVBAR
 // ============================================================
 
-function Navbar({ lang, setLang, t }: { lang: Lang; setLang: (l: Lang) => void; t: T }) {
+function Navbar({ lang, setLang, t, page, setPage }: { lang: Lang; setLang: (l: Lang) => void; t: T; page: string; setPage: (p: string) => void }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -279,12 +280,10 @@ function Navbar({ lang, setLang, t }: { lang: Lang; setLang: (l: Lang) => void; 
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const navHrefs = ['#', '#talents', '#my-talents', '#info'];
-
   return (
     <nav className={`navbar${scrolled ? ' navbar--scrolled' : ''}`} role="navigation" aria-label="Main navigation">
       <div className="navbar-inner container">
-        <a href="#" className="navbar-logo" aria-label="Persona home">
+        <a href="#" className="navbar-logo" aria-label="Persona home" onClick={() => setPage('home')}>
           <img src={logoImg} alt="Persona" className="logo-img" />
         </a>
 
@@ -300,17 +299,27 @@ function Navbar({ lang, setLang, t }: { lang: Lang; setLang: (l: Lang) => void; 
         </button>
 
         <div className={`nav-links${menuOpen ? ' open' : ''}`} role="menubar">
-          {t.nav.map((label, i) => (
-            <a
-              key={label}
-              href={navHrefs[i]}
-              className={`nav-item${i === 0 ? ' active' : ''}`}
-              role="menuitem"
-              onClick={() => setMenuOpen(false)}
-            >
-              {label}
-            </a>
-          ))}
+          {t.nav.map((label, i) => {
+            const isInfo = i === 3;
+            const isHome = i === 0;
+            const isActive = isInfo ? page === 'info' : (isHome ? page === 'home' : false);
+            const href = isInfo ? '#' : ['#', '#talents', '#my-talents', '#'][i];
+            return (
+              <a
+                key={label}
+                href={href}
+                className={`nav-item${isActive ? ' active' : ''}`}
+                role="menuitem"
+                onClick={(e) => {
+                  if (isInfo) { e.preventDefault(); setPage('info'); }
+                  else if (isHome) { e.preventDefault(); setPage('home'); }
+                  setMenuOpen(false);
+                }}
+              >
+                {label}
+              </a>
+            );
+          })}
           <button
             className="lang-toggle lang-toggle--drawer"
             onClick={() => { setLang(lang === 'en' ? 'fi' : 'en'); setMenuOpen(false); }}
@@ -773,18 +782,28 @@ function PasswordGate({ children }: { children: React.ReactNode }) {
 
 export default function LandingPage() {
   const [lang, setLang] = useState<Lang>('en');
+  const [page, setPage] = useState('home');
   const t = translations[lang];
 
   return (
     <PasswordGate>
       <div>
-        <Navbar lang={lang} setLang={setLang} t={t} />
+        <Navbar lang={lang} setLang={setLang} t={t} page={page} setPage={setPage} />
         <main>
-          <HeroSection t={t} />
-          <TalentsSection t={t} />
-          <PersonaSection t={t} />
-          <HowItWorksSection t={t} />
-          <NewsletterSection t={t} />
+          {page === 'info' ? (
+            <>
+              <InfoPage lang={lang} />
+              <NewsletterSection t={t} />
+            </>
+          ) : (
+            <>
+              <HeroSection t={t} />
+              <TalentsSection t={t} />
+              <PersonaSection t={t} />
+              <HowItWorksSection t={t} />
+              <NewsletterSection t={t} />
+            </>
+          )}
         </main>
         <Footer t={t} />
       </div>
