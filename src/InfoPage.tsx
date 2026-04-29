@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import susannaImg from '../susanna.png';
 import emmiImg from '../emmi.png';
 import './InfoPage.css';
@@ -269,9 +269,27 @@ function SupportContent({ data }: { data: SupportData }) {
 // INFO PAGE
 // ============================================================
 
+const VALID_TABS: Tab[] = ['company', 'faq', 'support', 'news', 'investors', 'careers'];
+
+function getTabFromHash(): Tab {
+  const part = window.location.hash.split('/')[1] as Tab;
+  return VALID_TABS.includes(part) ? part : 'faq';
+}
+
 export default function InfoPage({ lang }: { lang: Lang }) {
-  const [activeTab, setActiveTab] = useState<Tab>('faq');
+  const [activeTab, setActiveTab] = useState<Tab>(getTabFromHash);
   const t = INFO_TRANSLATIONS[lang];
+
+  useEffect(() => {
+    const onHashChange = () => setActiveTab(getTabFromHash());
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
+
+  function switchTab(tab: Tab) {
+    window.location.hash = `info/${tab}`;
+    setActiveTab(tab);
+  }
 
   function renderContent() {
     switch (activeTab) {
@@ -293,7 +311,7 @@ export default function InfoPage({ lang }: { lang: Lang }) {
             <button
               key={tab.id}
               className={`info-subnav-btn${activeTab === tab.id ? ' active' : ''}`}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => switchTab(tab.id)}
             >
               {tab.label}
             </button>

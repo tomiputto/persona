@@ -780,15 +780,34 @@ function PasswordGate({ children }: { children: React.ReactNode }) {
   );
 }
 
+function getPageFromHash() {
+  return window.location.hash.startsWith('#info') ? 'info' : 'home';
+}
+
 export default function LandingPage() {
   const [lang, setLang] = useState<Lang>('en');
-  const [page, setPage] = useState('home');
+  const [page, setPage] = useState(getPageFromHash);
   const t = translations[lang];
+
+  useEffect(() => {
+    const onHashChange = () => setPage(getPageFromHash());
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
+
+  function navigateTo(newPage: string) {
+    if (newPage === 'info') {
+      window.location.hash = 'info/faq';
+    } else {
+      history.pushState(null, '', window.location.pathname);
+    }
+    setPage(newPage);
+  }
 
   return (
     <PasswordGate>
       <div>
-        <Navbar lang={lang} setLang={setLang} t={t} page={page} setPage={setPage} />
+        <Navbar lang={lang} setLang={setLang} t={t} page={page} setPage={navigateTo} />
         <main>
           {page === 'info' ? (
             <>
