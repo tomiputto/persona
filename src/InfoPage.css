@@ -13,7 +13,7 @@
   font-weight: 400;
   font-size: clamp(38px, 4vw, 64px);
   line-height: 1.1;
-  color: var(--accent);
+  color: #fff;
   margin-bottom: 40px;
 }
 
@@ -370,7 +370,7 @@
 .company-slogan-title {
   font-family: 'Syne', sans-serif;
   font-weight: 400;
-  font-size: clamp(40px, 5vw, 72px);
+  font-size: clamp(28px, 3.5vw, 48px);
   line-height: 1.2;
   color: var(--accent);
   margin: 0;
@@ -380,8 +380,8 @@
 .company-slogan-body {
   font-family: 'Syne', sans-serif;
   font-weight: 400;
-  font-size: clamp(20px, 2.5vw, 32px);
-  line-height: 1.375;
+  font-size: clamp(16px, 1.6vw, 22px);
+  line-height: 1.5;
   letter-spacing: 0.25px;
   color: #fff;
   margin: 0;
