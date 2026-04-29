@@ -71,6 +71,20 @@ const translations = {
       links: ['Home', 'Talents', 'My Talents', 'Company', 'FAQ', 'Support', 'News', 'Investors', 'Careers', 'Newsletter'],
       copyright: '© 2026 — Copyright Persona Entertainment Oy',
     },
+    account: {
+      title: 'User account',
+      userName: 'User',
+      settingsHeading: 'Personal settings',
+      rows: [
+        { label: 'Email', value: 'user@privaterelay.appleid.com', icon: 'mail' },
+        { label: 'Language', value: 'English', icon: 'globe' },
+        { label: 'Notifications', value: 'On', icon: 'bell' },
+        { label: 'Manage subscription', value: 'No active subscriptions', icon: 'card' },
+        { label: 'Data sharing consent', value: 'Allowed', icon: 'fingerprint' },
+      ],
+      logOut: 'Log out',
+      deleteAccount: 'Delete account',
+    },
   },
   fi: {
     nav: ['Etusivu', 'Talentit', 'Omat Talentit', 'Info'],
@@ -121,6 +135,20 @@ const translations = {
     footer: {
       links: ['Etusivu', 'Talentit', 'Omat Talentit', 'Yritys', 'UKK', 'Tuki', 'Uutiset', 'Sijoittajat', 'Avoimet työpaikat', 'Uutiskirje'],
       copyright: '© 2026 — Copyright Persona Entertainment Oy',
+    },
+    account: {
+      title: 'Käyttäjätili',
+      userName: 'Käyttäjä',
+      settingsHeading: 'Henkilökohtaiset asetukset',
+      rows: [
+        { label: 'Sähköposti', value: 'user@privaterelay.appleid.com', icon: 'mail' },
+        { label: 'Kieli', value: 'Suomi', icon: 'globe' },
+        { label: 'Ilmoitukset', value: 'Päällä', icon: 'bell' },
+        { label: 'Hallitse tilausta', value: 'Ei aktiivisia tilauksia', icon: 'card' },
+        { label: 'Tietojen jakamislupa', value: 'Sallittu', icon: 'fingerprint' },
+      ],
+      logOut: 'Kirjaudu ulos',
+      deleteAccount: 'Poista tili',
     },
   },
 };
@@ -267,12 +295,104 @@ function GooglePlayIcon() {
 }
 
 // ============================================================
+// USER ACCOUNT PANEL
+// ============================================================
+
+type AccountRow = { label: string; value: string; icon: string };
+
+function SettingIcon({ type }: { type: string }) {
+  if (type === 'mail') return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFDDB2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/>
+    </svg>
+  );
+  if (type === 'globe') return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFDDB2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+    </svg>
+  );
+  if (type === 'bell') return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFDDB2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+    </svg>
+  );
+  if (type === 'card') return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFDDB2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/>
+    </svg>
+  );
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFDDB2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z"/><path d="M12 8v4l3 3"/>
+    </svg>
+  );
+}
+
+function UserAccountPanel({ t, onClose }: { t: T['account']; onClose: () => void }) {
+  return (
+    <>
+      <div className="user-panel-backdrop" onClick={onClose} aria-hidden="true" />
+      <div className="user-panel" role="dialog" aria-modal="true" aria-label={t.title}>
+        <div className="user-panel-handle" />
+        <div className="user-panel-header">
+          <span className="user-panel-title">{t.title}</span>
+          <button className="user-panel-close" onClick={onClose} aria-label="Close">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+              <path d="M18 6 6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+
+        <div className="user-panel-identity">
+          <div className="user-panel-avatar">U</div>
+          <div>
+            <p className="user-panel-name">{t.userName}</p>
+            <p className="user-panel-email">{t.rows[0].value}</p>
+          </div>
+        </div>
+
+        <h2 className="user-panel-settings-heading">{t.settingsHeading}</h2>
+
+        <div className="user-panel-settings-card">
+          {t.rows.map((row: AccountRow, i: number) => (
+            <div key={i}>
+              <button className="user-panel-row">
+                <span className="user-panel-row-icon"><SettingIcon type={row.icon} /></span>
+                <span className="user-panel-row-content">
+                  <span className="user-panel-row-label">{row.label}</span>
+                  <span className="user-panel-row-value">{row.value}</span>
+                </span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="m9 18 6-6-6-6"/>
+                </svg>
+              </button>
+              {i < t.rows.length - 1 && <div className="user-panel-divider" />}
+            </div>
+          ))}
+        </div>
+
+        <div className="user-panel-actions">
+          <button className="user-panel-logout">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+            {t.logOut}
+          </button>
+          <button className="user-panel-delete">{t.deleteAccount}</button>
+        </div>
+      </div>
+    </>
+  );
+}
+
+// ============================================================
 // NAVBAR
 // ============================================================
 
 function Navbar({ lang, setLang, t, page, setPage }: { lang: Lang; setLang: (l: Lang) => void; t: T; page: string; setPage: (p: string) => void }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [accountOpen, setAccountOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -281,6 +401,7 @@ function Navbar({ lang, setLang, t, page, setPage }: { lang: Lang; setLang: (l: 
   }, []);
 
   return (
+    <>
     <nav className={`navbar${scrolled ? ' navbar--scrolled' : ''}`} role="navigation" aria-label="Main navigation">
       <div className="navbar-inner container">
         <a href="#" className="navbar-logo" aria-label="Persona home" onClick={() => setPage('home')}>
@@ -341,12 +462,14 @@ function Navbar({ lang, setLang, t, page, setPage }: { lang: Lang; setLang: (l: 
             <CartIcon />
             <span>0</span>
           </button>
-          <button className="btn-user" aria-label="My account">
+          <button className="btn-user" aria-label="My account" onClick={() => setAccountOpen(true)}>
             <UserIcon />
           </button>
         </div>
       </div>
     </nav>
+    {accountOpen && <UserAccountPanel t={t.account} onClose={() => setAccountOpen(false)} />}
+    </>
   );
 }
 
