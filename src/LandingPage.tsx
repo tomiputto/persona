@@ -231,6 +231,18 @@ function FinnishFlag() {
   );
 }
 
+function UKFlag() {
+  return (
+    <svg width="22" height="16" viewBox="0 0 60 40" fill="none" aria-label="UK flag">
+      <rect width="60" height="40" rx="2" fill="#012169"/>
+      <path d="M0 0L60 40M60 0L0 40" stroke="white" strokeWidth="8"/>
+      <path d="M0 0L60 40M60 0L0 40" stroke="#C8102E" strokeWidth="4"/>
+      <path d="M30 0V40M0 20H60" stroke="white" strokeWidth="12"/>
+      <path d="M30 0V40M0 20H60" stroke="#C8102E" strokeWidth="7"/>
+    </svg>
+  );
+}
+
 function FacebookIcon() {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="white" aria-hidden="true">
@@ -446,6 +458,7 @@ function Navbar({ lang, setLang, t, page, setPage }: { lang: Lang; setLang: (l: 
             onClick={() => { setLang(lang === 'en' ? 'fi' : 'en'); setMenuOpen(false); }}
             aria-label="Toggle language"
           >
+            {lang === 'en' ? <FinnishFlag /> : <UKFlag />}
             {lang === 'en' ? 'FI' : 'EN'}
           </button>
         </div>
@@ -456,6 +469,7 @@ function Navbar({ lang, setLang, t, page, setPage }: { lang: Lang; setLang: (l: 
             onClick={() => setLang(lang === 'en' ? 'fi' : 'en')}
             aria-label="Toggle language"
           >
+            {lang === 'en' ? <FinnishFlag /> : <UKFlag />}
             {lang === 'en' ? 'FI' : 'EN'}
           </button>
           <button className="btn-cart" aria-label="Cart, 0 items">
