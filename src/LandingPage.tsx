@@ -3,19 +3,11 @@ import phoneInHand from '../phone-in-hand.png';
 import avatarImg from '../avatar.png';
 import bottomBg from '../Bottom.png';
 import bgImg from '../BG.png';
-import woman1Img from '../woman1.png';
-import woman2Img from '../woman2.png';
-import woman3Img from '../woman3.png';
-import woman4Img from '../woman4.png';
-import man1Img from '../man1.png';
-import man2Img from '../man2.png';
-import man3Img from '../man3.png';
-import man4Img from '../man4.png';
 import personaVideo from '../PERSONA_INAPP_S_16x9.mp4';
 import videoPoster from '../video-poster.jpg';
 import logoImg from '../logo.png';
 import './LandingPage.css';
-import InfoPage from './InfoPage';
+import { CompanyPage, SupportPage, FaqPage } from './InfoPage';
 
 // ============================================================
 // TRANSLATIONS
@@ -23,27 +15,13 @@ import InfoPage from './InfoPage';
 
 const translations = {
   en: {
-    nav: ['Home', 'Talents', 'My Talents', 'Info'],
+    nav: ['Home', 'Company', 'Support', 'FAQ'],
+    auth: { login: 'Login', signUp: 'Sign up' },
     hero: {
       headline: 'You are being listened',
       body: 'Persona gives you an unique connection and interaction with your favourite person, idol or mentor.',
       signUp: 'Sign up',
       newsletter: 'Subscribe newsletter',
-    },
-    talents: {
-      heading: 'Meet our Talents',
-      seeAll: 'See all Talents',
-      meetBtn: 'Meet Talent',
-      professions: [
-        'Entrepreneur',
-        'Chef de Cuisine',
-        'Musician',
-        'Actor and Writer',
-        'Fitness Coach',
-        'Photographer',
-        'Fashion Designer',
-        'Music Producer',
-      ],
     },
     persona: {
       heading: 'This is Persona',
@@ -75,48 +53,34 @@ const translations = {
       phonePlaceholder: '40 123 4567',
       signUp: 'Sign up',
     },
+    social: {
+      heading: 'Social Media',
+      desc: 'Follow Persona on social media and be the first to know what\'s new.',
+      followBtn: 'Follow',
+      channels: [
+        { name: 'Instagram', desc: 'Behind-the-scenes moments and talent highlights from the world of Persona.' },
+        { name: 'Threads', desc: 'Join the conversation and stay up to date with the latest from Persona.' },
+        { name: 'TikTok', desc: 'Short clips, big personalities — watch our talents come to life.' },
+        { name: 'Facebook', desc: 'Connect with the Persona community. News, events and updates.' },
+        { name: 'YouTube', desc: 'Full episodes, interviews and exclusive content from our talents.' },
+        { name: 'LinkedIn', desc: 'Follow our journey as a company — news, careers and partnerships.' },
+      ],
+    },
     footer: {
       links: ['Home', 'Talents', 'My Talents', 'Company', 'FAQ', 'Support', 'News', 'Investors', 'Careers', 'Newsletter'],
       copyright: '© 2026 — Copyright Persona Entertainment Oy',
     },
-    account: {
-      title: 'User account',
-      userName: 'User',
-      settingsHeading: 'Personal settings',
-      rows: [
-        { label: 'Email', value: 'user@privaterelay.appleid.com', icon: 'mail' },
-        { label: 'Language', value: 'English', icon: 'globe' },
-        { label: 'Notifications', value: 'On', icon: 'bell' },
-        { label: 'Manage subscription', value: 'No active subscriptions', icon: 'card' },
-        { label: 'Data sharing consent', value: 'Allowed', icon: 'fingerprint' },
-      ],
-      logOut: 'Log out',
-      deleteAccount: 'Delete account',
-    },
   },
   fi: {
-    nav: ['Etusivu', 'Talentit', 'Omat Talentit', 'Info'],
+    nav: ['Etusivu', 'Yritys', 'Tuki', 'UKK'],
+    auth: { login: 'Kirjaudu', signUp: 'Rekisteröidy' },
     hero: {
       headline: 'Sinua kuunnellaan',
       body: 'Persona tarjoaa sinulle ainutlaatuisen yhteyden ja vuorovaikutuksen suosikkihenkilösi, idolisi tai mentorisi kanssa.',
       signUp: 'Rekisteröidy',
       newsletter: 'Tilaa uutiskirje',
     },
-    talents: {
-      heading: 'Tutustu Talentteihin',
-      seeAll: 'Näytä kaikki',
-      meetBtn: 'Tutustu',
-      professions: [
-        'Yrittäjä',
-        'Keittiömestari',
-        'Muusikko',
-        'Näyttelijä ja kirjailija',
-        'Personal Trainer',
-        'Valokuvaaja',
-        'Muotisuunnittelija',
-        'Musiikkituottaja',
-      ],
-    },
+
     persona: {
       heading: 'Tämä on Persona',
       description: 'Persona antaa sinulle mahdollisuuden olla yhteydessä suosikkihenkilöihisi kuten koskaan ennen. Voit keskustella heidän kanssaan milloin tahansa, missä tahansa. Persona on käytettävissä 24/7 omalla kielelläsi.',
@@ -147,23 +111,22 @@ const translations = {
       phonePlaceholder: '40 123 4567',
       signUp: 'Tilaa',
     },
+    social: {
+      heading: 'Sosiaalinen media',
+      desc: 'Seuraa Personaa sosiaalisessa mediassa ja ole ensimmäinen tietämässä uusimmista uutisista.',
+      followBtn: 'Seuraa',
+      channels: [
+        { name: 'Instagram', desc: 'Kulissien takaa ja talenttinostoja Personan maailmasta.' },
+        { name: 'Threads', desc: 'Liity keskusteluun ja pysy ajan tasalla Personan uutisista.' },
+        { name: 'TikTok', desc: 'Lyhyitä klippejä, suuria persoonia — katso talenttimme henkiin.' },
+        { name: 'Facebook', desc: 'Liity Persona-yhteisöön. Uutisia, tapahtumia ja päivityksiä.' },
+        { name: 'YouTube', desc: 'Täyspitkiä jaksoja, haastatteluja ja eksklusiivista sisältöä talenteiltamme.' },
+        { name: 'LinkedIn', desc: 'Seuraa yritystarinaamme — uutiset, avoimet paikat ja kumppanuudet.' },
+      ],
+    },
     footer: {
       links: ['Etusivu', 'Talentit', 'Omat Talentit', 'Yritys', 'UKK', 'Tuki', 'Uutiset', 'Sijoittajat', 'Avoimet työpaikat', 'Uutiskirje'],
       copyright: '© 2026 — Copyright Persona Entertainment Oy',
-    },
-    account: {
-      title: 'Käyttäjätili',
-      userName: 'Käyttäjä',
-      settingsHeading: 'Henkilökohtaiset asetukset',
-      rows: [
-        { label: 'Sähköposti', value: 'user@privaterelay.appleid.com', icon: 'mail' },
-        { label: 'Kieli', value: 'Suomi', icon: 'globe' },
-        { label: 'Ilmoitukset', value: 'Päällä', icon: 'bell' },
-        { label: 'Hallitse tilausta', value: 'Ei aktiivisia tilauksia', icon: 'card' },
-        { label: 'Tietojen jakamislupa', value: 'Sallittu', icon: 'fingerprint' },
-      ],
-      logOut: 'Kirjaudu ulos',
-      deleteAccount: 'Poista tili',
     },
   },
 };
@@ -175,18 +138,17 @@ type T = typeof translations.en;
 // DATA
 // ============================================================
 
-const TALENT_NAMES = [
-  { id: 1, name: 'Sophia Lane',  photo: woman1Img, badge: 'NEW' },
-  { id: 2, name: 'Marcus Reid',  photo: man1Img,   badge: 'NEW' },
-  { id: 3, name: 'Olivia Grant', photo: woman2Img },
-  { id: 4, name: 'Ethan Cole',   photo: man2Img },
-  { id: 5, name: 'Ava Mitchell', photo: woman3Img },
-  { id: 6, name: 'Noah Harper',  photo: man3Img },
-  { id: 7, name: 'Isla Bennett', photo: woman4Img },
-  { id: 8, name: 'Liam Foster',  photo: man4Img },
-];
 
-const FOOTER_LINKS_HREFS = ['#', '#talents', '#my-talents', '#info/company', '#info/faq', '#info/support', '#info/news', '#info/investors', '#info/careers', '#newsletter'];
+const FOOTER_LINKS_HREFS = ['#', '#talents', '#my-talents', '#company', '#faq', '#support', '#', '#', '#', '#newsletter'];
+
+const SOCIAL_CHANNELS = [
+  { Icon: InstagramIcon, color: 'rgba(195, 42, 163, 0.18)', border: 'rgba(195, 42, 163, 0.45)' },
+  { Icon: ThreadsIcon,   color: 'rgba(255, 255, 255, 0.06)', border: 'rgba(255, 255, 255, 0.22)' },
+  { Icon: TikTokIcon,    color: 'rgba(255, 0, 80, 0.18)',   border: 'rgba(255, 0, 80, 0.45)' },
+  { Icon: FacebookIcon,  color: 'rgba(24, 119, 242, 0.18)', border: 'rgba(24, 119, 242, 0.45)' },
+  { Icon: YouTubeIcon,   color: 'rgba(255, 0, 0, 0.18)',    border: 'rgba(255, 0, 0, 0.45)' },
+  { Icon: LinkedInIcon,  color: 'rgba(10, 102, 194, 0.18)', border: 'rgba(10, 102, 194, 0.45)' },
+];
 
 // ============================================================
 // ICONS
@@ -208,25 +170,6 @@ function ArrowRightIcon() {
   );
 }
 
-function CartIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <path
-        d="M10 1 C10 1 10.6 5.4 13 7.8 C15.4 10.2 19 10 19 10 C19 10 15.4 9.8 13 12.2 C10.6 14.6 10 19 10 19 C10 19 9.4 14.6 7 12.2 C4.6 9.8 1 10 1 10 C1 10 4.6 10.2 7 7.8 C9.4 5.4 10 1 10 1 Z"
-        fill="#FFDDB2"
-      />
-    </svg>
-  );
-}
-
-function UserIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="12" cy="8" r="4" fill="#000" />
-      <path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="#000" />
-    </svg>
-  );
-}
 
 function ChevronDownIcon({ color = 'white' }: { color?: string }) {
   return (
@@ -310,6 +253,22 @@ function AppleIcon() {
   );
 }
 
+function ThreadsIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 192 192" fill="white" aria-hidden="true">
+      <path d="M141.537 88.9883C140.71 88.5919 139.87 88.2104 139.019 87.8451C137.537 60.5382 122.616 44.905 97.5619 44.745C97.4484 44.7443 97.3355 44.7443 97.222 44.7443C82.2364 44.7443 69.7731 51.1409 62.102 62.7807L75.881 72.2328C81.6116 63.5383 90.6052 61.6848 97.2286 61.6848C97.3051 61.6848 97.3819 61.6848 97.4576 61.6855C105.707 61.7381 111.932 64.1366 115.961 68.814C118.893 72.2193 120.854 76.925 121.825 82.8638C114.511 81.6207 106.601 81.2385 98.145 81.7233C74.3247 83.0954 59.0111 96.9879 60.0396 116.292C60.5615 126.084 65.4542 134.508 73.8341 139.431C80.9596 143.607 90.1748 145.656 99.7309 145.131C112.285 144.432 122.041 139.193 128.554 129.618C133.557 122.28 136.669 112.661 137.883 100.428C144.079 104.008 148.718 109.653 151.167 117.1C155.149 129.07 155.484 149.289 142.468 162.198C131.111 173.48 117.284 178.378 96.5604 178.522C73.5801 178.35 56.3294 171.059 45.3199 156.847C35.0665 143.582 29.7332 124.427 29.5321 100C29.7332 75.5731 35.0665 56.4182 45.3199 43.1532C56.3294 28.9411 73.5801 21.6497 96.5604 21.4779C119.687 21.6494 137.218 28.9758 148.479 43.2549C154.02 50.2868 158.044 59.2884 160.455 69.8468L176.938 65.8404C173.989 53.2093 169.09 42.1478 162.276 33.0618C148.668 15.0851 128.559 5.76076 96.6321 5.5H96.4679C64.6104 5.76076 44.3744 15.1108 30.5425 33.0729C18.2746 48.9534 11.9793 71.1656 11.7686 100C11.9793 128.834 18.2746 151.046 30.5425 166.927C44.3744 184.889 64.6104 194.239 96.4679 194.5H96.6321C125.219 194.261 143.397 186.431 157.161 172.781C173.209 156.822 172.765 136.655 167.786 121.534C163.979 110.006 156.12 100.496 141.537 88.9883ZM98.4405 128.084C88.0005 128.663 77.0586 124.367 76.5482 114.922C76.1728 107.922 81.3258 100.274 99.1822 99.2601C101.087 99.1509 102.958 99.0979 104.799 99.0979C111.549 99.0979 117.905 99.739 123.78 100.979C121.881 124.176 110.981 127.395 98.4405 128.084Z" />
+    </svg>
+  );
+}
+
+function YouTubeIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+      <path d="M22.54 6.42a2.83 2.83 0 00-2-1.99C18.88 4 12 4 12 4s-6.88 0-8.55.43a2.83 2.83 0 00-2 2A29.94 29.94 0 001 12a29.94 29.94 0 00.46 5.58 2.83 2.83 0 002 1.99C5.12 20 12 20 12 20s6.88 0 8.55-.43a2.83 2.83 0 002-1.99A29.94 29.94 0 0023 12a29.94 29.94 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" />
+    </svg>
+  );
+}
+
 function GooglePlayIcon() {
   return (
     <svg width="20" height="22" viewBox="0 0 512 512" fill="none" aria-hidden="true">
@@ -325,93 +284,6 @@ function GooglePlayIcon() {
 // USER ACCOUNT PANEL
 // ============================================================
 
-type AccountRow = { label: string; value: string; icon: string };
-
-function SettingIcon({ type }: { type: string }) {
-  if (type === 'mail') return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFDDB2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/>
-    </svg>
-  );
-  if (type === 'globe') return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFDDB2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-    </svg>
-  );
-  if (type === 'bell') return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFDDB2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-    </svg>
-  );
-  if (type === 'card') return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFDDB2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/>
-    </svg>
-  );
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFDDB2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z"/><path d="M12 8v4l3 3"/>
-    </svg>
-  );
-}
-
-function UserAccountPanel({ t, onClose }: { t: T['account']; onClose: () => void }) {
-  return (
-    <>
-      <div className="user-panel-backdrop" onClick={onClose} aria-hidden="true" />
-      <div className="user-panel" role="dialog" aria-modal="true" aria-label={t.title}>
-        <div className="user-panel-handle" />
-        <div className="user-panel-header">
-          <span className="user-panel-title">{t.title}</span>
-          <button className="user-panel-close" onClick={onClose} aria-label="Close">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-              <path d="M18 6 6 18M6 6l12 12"/>
-            </svg>
-          </button>
-        </div>
-
-        <div className="user-panel-identity">
-          <div className="user-panel-avatar">U</div>
-          <div>
-            <p className="user-panel-name">{t.userName}</p>
-            <p className="user-panel-email">{t.rows[0].value}</p>
-          </div>
-        </div>
-
-        <h2 className="user-panel-settings-heading">{t.settingsHeading}</h2>
-
-        <div className="user-panel-settings-card">
-          {t.rows.map((row: AccountRow, i: number) => (
-            <div key={i}>
-              <button className="user-panel-row">
-                <span className="user-panel-row-icon"><SettingIcon type={row.icon} /></span>
-                <span className="user-panel-row-content">
-                  <span className="user-panel-row-label">{row.label}</span>
-                  <span className="user-panel-row-value">{row.value}</span>
-                </span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="m9 18 6-6-6-6"/>
-                </svg>
-              </button>
-              {i < t.rows.length - 1 && <div className="user-panel-divider" />}
-            </div>
-          ))}
-        </div>
-
-        <div className="user-panel-actions">
-          <button className="user-panel-logout">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
-            </svg>
-            {t.logOut}
-          </button>
-          <button className="user-panel-delete">{t.deleteAccount}</button>
-        </div>
-      </div>
-    </>
-  );
-}
-
 // ============================================================
 // NAVBAR
 // ============================================================
@@ -419,7 +291,6 @@ function UserAccountPanel({ t, onClose }: { t: T['account']; onClose: () => void
 function Navbar({ lang, setLang, t, page, setPage }: { lang: Lang; setLang: (l: Lang) => void; t: T; page: string; setPage: (p: string) => void }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [accountOpen, setAccountOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -463,19 +334,17 @@ function Navbar({ lang, setLang, t, page, setPage }: { lang: Lang; setLang: (l: 
             </button>
           </div>
           {t.nav.map((label, i) => {
-            const isInfo = i === 3;
-            const isHome = i === 0;
-            const isActive = isInfo ? page === 'info' : (isHome ? page === 'home' : false);
-            const href = isInfo ? '#' : ['#', '#talents', '#my-talents', '#'][i];
+            const pageId = ['home', 'company', 'support', 'faq'][i];
+            const isActive = page === pageId;
             return (
               <a
                 key={label}
-                href={href}
+                href={pageId === 'home' ? '#' : `#${pageId}`}
                 className={`nav-item${isActive ? ' active' : ''}`}
                 role="menuitem"
                 onClick={(e) => {
-                  if (isInfo) { e.preventDefault(); setPage('info'); }
-                  else if (isHome) { e.preventDefault(); setPage('home'); }
+                  e.preventDefault();
+                  setPage(pageId);
                   setMenuOpen(false);
                 }}
               >
@@ -491,6 +360,10 @@ function Navbar({ lang, setLang, t, page, setPage }: { lang: Lang; setLang: (l: 
             {lang === 'en' ? <FinnishFlag /> : <UKFlag />}
             {lang === 'en' ? 'FI' : 'EN'}
           </button>
+          <div className="drawer-auth">
+            <button className="btn-outline btn-nav-login drawer-auth-btn">{t.auth.login}</button>
+            <button className="btn-primary btn-nav-signup drawer-auth-btn"><HeartIcon />{t.auth.signUp}</button>
+          </div>
         </div>
 
         <div className="nav-actions">
@@ -502,17 +375,11 @@ function Navbar({ lang, setLang, t, page, setPage }: { lang: Lang; setLang: (l: 
             {lang === 'en' ? <FinnishFlag /> : <UKFlag />}
             {lang === 'en' ? 'FI' : 'EN'}
           </button>
-          <button className="btn-cart" aria-label="Cart, 0 items">
-            <CartIcon />
-            <span>0</span>
-          </button>
-          <button className="btn-user" aria-label="My account" onClick={() => setAccountOpen(true)}>
-            <UserIcon />
-          </button>
+          <button className="btn-outline btn-nav-login">{t.auth.login}</button>
+          <button className="btn-primary btn-nav-signup"><HeartIcon />{t.auth.signUp}</button>
         </div>
       </div>
     </nav>
-    {accountOpen && <UserAccountPanel t={t.account} onClose={() => setAccountOpen(false)} />}
     </>
   );
 }
@@ -678,34 +545,32 @@ function HeroSection({ t }: { t: T }) {
 }
 
 // ============================================================
-// TALENTS
+// SOCIAL MEDIA
 // ============================================================
 
-function TalentsSection({ t }: { t: T }) {
+function SocialMediaSection({ t }: { t: T }) {
   return (
-    <section className="talents-section" id="talents" aria-labelledby="talents-heading">
+    <section className="social-section" id="social" aria-labelledby="social-heading">
       <div className="container">
-        <div className="section-header">
-          <h2 className="section-title" id="talents-heading">{t.talents.heading}</h2>
-          <a href="#" className="browse-all" aria-label="Browse all talents">
-            {t.talents.seeAll}
-            <ArrowRightIcon />
-          </a>
-        </div>
-        <div className="talent-carousel" role="list" aria-label="Talent list">
-          {TALENT_NAMES.map((talent, i) => (
-            <div key={talent.id} className="talent-card" role="listitem">
-              <div className="talent-photo">
-                <img src={talent.photo} alt={talent.name} />
-                {talent.badge && <span className="talent-badge">{talent.badge}</span>}
-              </div>
-              <div className="talent-info">
-                <p className="talent-name">{talent.name}</p>
-                <p className="talent-profession">{t.talents.professions[i]}</p>
-              </div>
-              <button className="talent-btn">{t.talents.meetBtn}</button>
-            </div>
-          ))}
+        <h2 className="section-title-accent" id="social-heading">{t.social.heading}</h2>
+        <p className="social-section-desc">{t.social.desc}</p>
+        <div className="social-cards">
+          {SOCIAL_CHANNELS.map((channel, i) => {
+            const ch = t.social.channels[i];
+            return (
+              <article key={ch.name} className="social-card">
+                <div
+                  className="social-card-icon"
+                  style={{ background: channel.color, borderColor: channel.border }}
+                >
+                  <channel.Icon />
+                </div>
+                <h3 className="social-card-name">{ch.name}</h3>
+                <p className="social-card-desc">{ch.desc}</p>
+                <button className="btn-outline social-card-btn">{t.social.followBtn}</button>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -780,9 +645,9 @@ function HowItWorksSection({ t }: { t: T }) {
         </div>
         <p className="how-footer-text">
           {t.how.footerParts[0]}
-          <a href="#info/faq" className="how-footer-link">{t.how.footerFaqLabel}</a>
+          <a href="#faq" className="how-footer-link">{t.how.footerFaqLabel}</a>
           {t.how.footerParts[1]}
-          <a href="#info/investors" className="how-footer-link">{t.how.footerInvestorsLabel}</a>
+          <a href="#" className="how-footer-link">{t.how.footerInvestorsLabel}</a>
           {t.how.footerParts[2]}
         </p>
       </div>
@@ -957,7 +822,9 @@ function PasswordGate({ children }: { children: React.ReactNode }) {
 }
 
 function getPageFromHash() {
-  return window.location.hash.startsWith('#info') ? 'info' : 'home';
+  const hash = window.location.hash.slice(1);
+  if (hash === 'company' || hash === 'support' || hash === 'faq') return hash;
+  return 'home';
 }
 
 export default function LandingPage() {
@@ -967,19 +834,17 @@ export default function LandingPage() {
 
   useEffect(() => {
     const onHashChange = () => {
-      const newPage = getPageFromHash();
-      setPage(newPage);
-      if (newPage === 'info') window.scrollTo(0, 0);
+      setPage(getPageFromHash());
     };
     window.addEventListener('hashchange', onHashChange);
     return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
 
   function navigateTo(newPage: string) {
-    if (newPage === 'info') {
-      window.location.hash = 'info/company';
-    } else {
+    if (newPage === 'home') {
       history.pushState(null, '', window.location.pathname);
+    } else {
+      window.location.hash = newPage;
     }
     setPage(newPage);
   }
@@ -989,15 +854,25 @@ export default function LandingPage() {
       <div>
         <Navbar lang={lang} setLang={setLang} t={t} page={page} setPage={navigateTo} />
         <main>
-          {page === 'info' ? (
+          {page === 'company' ? (
             <>
-              <InfoPage lang={lang} />
+              <CompanyPage lang={lang} />
+              <NewsletterSection t={t} />
+            </>
+          ) : page === 'support' ? (
+            <>
+              <SupportPage lang={lang} />
+              <NewsletterSection t={t} />
+            </>
+          ) : page === 'faq' ? (
+            <>
+              <FaqPage lang={lang} />
               <NewsletterSection t={t} />
             </>
           ) : (
             <>
               <HeroSection t={t} />
-              <TalentsSection t={t} />
+              <SocialMediaSection t={t} />
               <PersonaSection t={t} />
               <HowItWorksSection t={t} />
               <NewsletterSection t={t} />

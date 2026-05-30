@@ -7,8 +7,6 @@ import './InfoPage.css';
 // TYPES
 // ============================================================
 
-type Tab = 'company' | 'faq' | 'support' | 'news' | 'investors' | 'careers';
-
 type Lang = 'en' | 'fi';
 
 // ============================================================
@@ -17,14 +15,6 @@ type Lang = 'en' | 'fi';
 
 const INFO_TRANSLATIONS = {
   en: {
-    tabs: [
-      { id: 'company' as Tab,   label: 'Company' },
-      { id: 'faq' as Tab,       label: 'FAQ' },
-      { id: 'support' as Tab,   label: 'Support' },
-      { id: 'news' as Tab,      label: 'News' },
-      { id: 'investors' as Tab, label: 'Investors' },
-      { id: 'careers' as Tab,   label: 'Careers' },
-    ],
     faq: [
       {
         q: 'What is Persona and how does the service work?',
@@ -34,7 +24,7 @@ const INFO_TRANSLATIONS = {
         q: 'Who is behind the Persona service?',
         a: 'Persona was founded by a team focused on meaningful connections. Our founders bring together expertise in technology and human-centred design to build this experience.',
         linkText: 'Meet the founders',
-        linkHash: 'info/company',
+        linkHash: 'company',
       },
       {
         q: 'How does Persona ensure security and privacy?',
@@ -46,9 +36,9 @@ const INFO_TRANSLATIONS = {
       },
       {
         q: 'How can I contact customer support?',
-        a: 'You can reach us via the Contact us section in the Company tab. We aim to respond to all enquiries as quickly as possible.',
-        linkText: 'Go to Company',
-        linkHash: 'info/company',
+        a: 'You can reach us via the Support page. We aim to respond to all enquiries as quickly as possible.',
+        linkText: 'Go to Support',
+        linkHash: 'support',
       },
     ],
     company: {
@@ -65,6 +55,7 @@ const INFO_TRANSLATIONS = {
       legalBtn: 'Terms of service',
     },
     support: {
+      heading: 'Support',
       techTitle: 'Technical support',
       techPhone: '+358 40 716 0909',
       techNote: 'You can call or send a text message or WhatsApp message',
@@ -74,36 +65,9 @@ const INFO_TRANSLATIONS = {
         { name: 'Emmi',    role: 'CMO', email: 'emmi@personaavatar.com',    photo: emmiImg },
       ],
     },
-    news: [
-      {
-        date: '28.04.2026',
-        headline: 'Persona launches its AI-powered platform for personal connections',
-        body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi auctor enim sit amet vulputate sagittis. Donec quis turpis nec felis ultrices luctus in ac turpis. Duis ornare est ligula, non ullamcorper urna suscipit eget. Vestibulum id mattis magna. Nulla id tortor placerat, eleifend nisl convallis, imperdiet quam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a ante leo. Suspendisse nibh neque, consequat ac eleifend eget, sollicitudin in arcu. Nullam ac tempus nibh.\n\nVestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Duis sed facilisis urna, ac feugiat ipsum. Aenean eu est ac elit dictum egestas. Mauris sem augue, rutrum eu neque in, sollicitudin lobortis sapien.',
-      },
-      {
-        date: '15.03.2026',
-        headline: 'Persona raises seed funding to expand its talent network',
-        body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi auctor enim sit amet vulputate sagittis. Donec quis turpis nec felis ultrices luctus in ac turpis. Duis ornare est ligula, non ullamcorper urna suscipit eget. Vestibulum id mattis magna. Nulla id tortor placerat, eleifend nisl convallis, imperdiet quam. Lorem ipsum dolor sit amet,',
-      },
-      {
-        date: '01.02.2026',
-        headline: 'Meet the team behind Persona Entertainment',
-        body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi auctor enim sit amet vulputate sagittis. Donec quis turpis nec felis ultrices luctus in ac turpis. Duis ornare est ligula, non ullamcorper urna suscipit eget. Vestibulum id mattis magna. Nulla id tortor placerat, eleifend nisl convallis, imperdiet quam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a ante leo. Suspendisse nibh neque, consequat ac eleifend eget, sollicitudin in arcu. Nullam ac tempus nibh.\n\nVestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Duis sed facilisis urna, ac feugiat ipsum.',
-      },
-    ],
-    shareLabel: 'Share',
-    investors: 'Interested in investing in Persona? Contact us at investors@persona.app to learn more about our vision and growth plans.',
-    careers: 'We are always looking for talented people to join our team. Send your open application to careers@persona.app.',
+    faqHeading: 'FAQ',
   },
   fi: {
-    tabs: [
-      { id: 'company' as Tab,   label: 'Yritys' },
-      { id: 'faq' as Tab,       label: 'UKK' },
-      { id: 'support' as Tab,   label: 'Tuki' },
-      { id: 'news' as Tab,      label: 'Uutiset' },
-      { id: 'investors' as Tab, label: 'Sijoittajat' },
-      { id: 'careers' as Tab,   label: 'Avoimet työpaikat' },
-    ],
     faq: [
       {
         q: 'Mikä on Persona ja miten palvelu toimii?',
@@ -113,7 +77,7 @@ const INFO_TRANSLATIONS = {
         q: 'Kuka on Persona-palvelun takana?',
         a: 'Personan perusti tiimi, joka keskittyy merkityksellisiin yhteyksiin. Perustajamme yhdistävät osaamisen teknologiassa ja ihmiskeskeisessä suunnittelussa tämän kokemuksen rakentamiseksi.',
         linkText: 'Tutustu perustajiin',
-        linkHash: 'info/company',
+        linkHash: 'company',
       },
       {
         q: 'Miten Persona varmistaa turvallisuuden ja yksityisyyden?',
@@ -125,9 +89,9 @@ const INFO_TRANSLATIONS = {
       },
       {
         q: 'Miten voin ottaa yhteyttä asiakastukeen?',
-        a: 'Tavoitat meidät Yritys-välilehden Ota yhteyttä -osion kautta. Pyrimme vastaamaan kaikkiin tiedusteluihin mahdollisimman nopeasti.',
-        linkText: 'Siirry Yritys-sivulle',
-        linkHash: 'info/company',
+        a: 'Tavoitat meidät Tuki-sivun kautta. Pyrimme vastaamaan kaikkiin tiedusteluihin mahdollisimman nopeasti.',
+        linkText: 'Siirry Tuki-sivulle',
+        linkHash: 'support',
       },
     ],
     company: {
@@ -144,6 +108,7 @@ const INFO_TRANSLATIONS = {
       legalBtn: 'Käyttöehdot',
     },
     support: {
+      heading: 'Tuki',
       techTitle: 'Tekninen tuki',
       techPhone: '+358 40 716 0909',
       techNote: 'Voit soittaa tai lähettää tekstiviestin tai WhatsApp-viestin',
@@ -153,31 +118,12 @@ const INFO_TRANSLATIONS = {
         { name: 'Emmi',    role: 'Markkinointijohtaja', email: 'emmi@personaavatar.com', photo: emmiImg },
       ],
     },
-    news: [
-      {
-        date: '28.04.2026',
-        headline: 'Persona lanseeraa tekoälypohjaisen alustan henkilökohtaisille yhteyksille',
-        body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi auctor enim sit amet vulputate sagittis. Donec quis turpis nec felis ultrices luctus in ac turpis. Duis ornare est ligula, non ullamcorper urna suscipit eget. Vestibulum id mattis magna. Nulla id tortor placerat, eleifend nisl convallis, imperdiet quam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a ante leo. Suspendisse nibh neque, consequat ac eleifend eget, sollicitudin in arcu. Nullam ac tempus nibh.\n\nVestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Duis sed facilisis urna, ac feugiat ipsum. Aenean eu est ac elit dictum egestas. Mauris sem augue, rutrum eu neque in, sollicitudin lobortis sapien.',
-      },
-      {
-        date: '15.03.2026',
-        headline: 'Persona kerää siemenrahoituksen laajentaakseen talenttverkostoaan',
-        body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi auctor enim sit amet vulputate sagittis. Donec quis turpis nec felis ultrices luctus in ac turpis. Duis ornare est ligula, non ullamcorper urna suscipit eget. Vestibulum id mattis magna. Nulla id tortor placerat, eleifend nisl convallis, imperdiet quam. Lorem ipsum dolor sit amet,',
-      },
-      {
-        date: '01.02.2026',
-        headline: 'Tutustu Persona Entertainmentin tiimiin',
-        body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi auctor enim sit amet vulputate sagittis. Donec quis turpis nec felis ultrices luctus in ac turpis. Duis ornare est ligula, non ullamcorper urna suscipit eget. Vestibulum id mattis magna. Nulla id tortor placerat, eleifend nisl convallis, imperdiet quam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a ante leo. Suspendisse nibh neque, consequat ac eleifend eget, sollicitudin in arcu.\n\nVestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Duis sed facilisis urna, ac feugiat ipsum.',
-      },
-    ],
-    shareLabel: 'Jaa',
-    investors: 'Kiinnostaako sijoittaminen Personaan? Ota yhteyttä osoitteessa investors@persona.app saadaksesi lisätietoja visiostamme ja kasvusuunnitelmistamme.',
-    careers: 'Etsimme aina lahjakkaita ihmisiä tiimiimme. Lähetä avoin hakemuksesi osoitteeseen careers@persona.app.',
+    faqHeading: 'UKK',
   },
 };
 
 // ============================================================
-// COMPONENTS
+// SHARED COMPONENTS
 // ============================================================
 
 function PlusIcon({ open }: { open: boolean }) {
@@ -212,10 +158,7 @@ function FaqList({ items }: { items: FaqItem[] }) {
             <div className="info-faq-answer-inner">
               <p className="info-faq-answer">{item.a}</p>
               {item.linkText && item.linkHash && (
-                <a
-                  href={`#${item.linkHash}`}
-                  className="info-faq-link"
-                >
+                <a href={`#${item.linkHash}`} className="info-faq-link">
                   {item.linkText} →
                 </a>
               )}
@@ -226,10 +169,6 @@ function FaqList({ items }: { items: FaqItem[] }) {
       ))}
     </ul>
   );
-}
-
-function TextContent({ text }: { text: string }) {
-  return <p className="info-text-content">{text}</p>;
 }
 
 type CompanyData = {
@@ -271,7 +210,7 @@ function CompanyContent({ data }: { data: CompanyData }) {
             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
           </svg>
           <p className="company-cta-title">{data.contactTitle}</p>
-          <a href="#info/support" className="company-cta-btn">{data.contactBtn}</a>
+          <a href="#support" className="company-cta-btn">{data.contactBtn}</a>
         </div>
         <div className="company-cta-card">
           <svg className="company-cta-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -281,7 +220,7 @@ function CompanyContent({ data }: { data: CompanyData }) {
             <line x1="6" y1="10" x2="18" y2="10" stroke="#FFDDB2" strokeWidth="1.5" strokeLinecap="round"/>
           </svg>
           <p className="company-cta-title">{data.legalTitle}</p>
-          <a href="#info/support" className="company-cta-btn company-cta-btn--icon">
+          <a href="#" className="company-cta-btn company-cta-btn--icon">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M3 8h10M8 3l5 5-5 5" stroke="#2B2621" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
@@ -293,49 +232,8 @@ function CompanyContent({ data }: { data: CompanyData }) {
   );
 }
 
-type NewsItem = { date: string; headline: string; body: string };
-
-function NewsContent({ items, shareLabel }: { items: NewsItem[]; shareLabel: string }) {
-  return (
-    <div className="news-list">
-      {items.map((item, i) => (
-        <article key={i} className="news-card">
-          <div className="news-card-top">
-            <span className="news-date">{item.date}</span>
-            <div className="news-share">
-              <span className="news-share-label">{shareLabel}</span>
-              <div className="news-share-icons">
-                <a href="#" aria-label="Facebook">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
-                </a>
-                <a href="#" aria-label="Instagram">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><circle cx="17.5" cy="6.5" r="0.5" fill="white" stroke="none"/></svg>
-                </a>
-                <a href="#" aria-label="LinkedIn">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                </a>
-                <a href="#" aria-label="TikTok">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.79a8.18 8.18 0 004.79 1.53V6.88a4.85 4.85 0 01-1.02-.19z"/></svg>
-                </a>
-                <a href="#" aria-label="Snapchat">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2C9 2 7 4.5 7 7.5v1c-.8.1-1.5.6-1.5 1.5 0 .7.5 1.2 1.2 1.4-.2 1.2-1.5 2.1-1.5 2.1s.8.4 3 .4c.4.9 1.3 1.5 3.3 1.5 2 0 2.9-.6 3.3-1.5 2.2 0 3-.4 3-.4s-1.3-.9-1.5-2.1c.7-.2 1.2-.7 1.2-1.4 0-.9-.7-1.4-1.5-1.5v-1C17 4.5 15 2 12 2z"/></svg>
-                </a>
-              </div>
-            </div>
-          </div>
-          <h3 className="news-headline">{item.headline}</h3>
-          <div className="news-body">
-            {item.body.split('\n\n').map((para, j) => (
-              <p key={j}>{para}</p>
-            ))}
-          </div>
-        </article>
-      ))}
-    </div>
-  );
-}
-
 type SupportData = {
+  heading: string;
   techTitle: string;
   techPhone: string;
   techNote: string;
@@ -371,69 +269,46 @@ function SupportContent({ data }: { data: SupportData }) {
 }
 
 // ============================================================
-// INFO PAGE
+// PAGE EXPORTS
 // ============================================================
 
-const VALID_TABS: Tab[] = ['company', 'faq', 'support', 'news', 'investors', 'careers'];
-
-function getTabFromHash(): Tab {
-  const part = window.location.hash.split('/')[1] as Tab;
-  return VALID_TABS.includes(part) ? part : 'company';
+function scrollToTop() {
+  window.scrollTo(0, 0);
 }
 
-export default function InfoPage({ lang }: { lang: Lang }) {
-  const [activeTab, setActiveTab] = useState<Tab>(getTabFromHash);
+export function CompanyPage({ lang }: { lang: Lang }) {
   const t = INFO_TRANSLATIONS[lang];
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
-    const onHashChange = () => { setActiveTab(getTabFromHash()); window.scrollTo(0, 0); };
-    window.addEventListener('hashchange', onHashChange);
-    return () => window.removeEventListener('hashchange', onHashChange);
-  }, []);
-
-  function switchTab(tab: Tab) {
-    window.location.hash = `info/${tab}`;
-    setActiveTab(tab);
-  }
-
-  function renderContent() {
-    switch (activeTab) {
-      case 'faq':       return <FaqList items={t.faq} />;
-      case 'company':   return <CompanyContent data={t.company} />;
-      case 'support':   return <SupportContent data={t.support} />;
-      case 'news':      return <NewsContent items={t.news} shareLabel={t.shareLabel} />;
-      case 'investors': return <TextContent text={t.investors} />;
-      case 'careers':   return <TextContent text={t.careers} />;
-    }
-  }
-
+  useEffect(scrollToTop, []);
   return (
     <div className="info-page">
       <div className="container">
-        <h1 className="info-heading">Info</h1>
-        <nav className="info-subnav" aria-label="Info navigation">
-          {t.tabs.map((tab) => (
-            <button
-              key={tab.id}
-              className={`info-subnav-btn${activeTab === tab.id ? ' active' : ''}`}
-              onClick={() => switchTab(tab.id)}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </nav>
-        {activeTab !== 'company' && (
-          <h2 className="info-tab-heading">
-            {t.tabs.find((tab) => tab.id === activeTab)?.label}
-          </h2>
-        )}
-        <div className="info-content">
-          {renderContent()}
-        </div>
+        <CompanyContent data={t.company} />
+      </div>
+    </div>
+  );
+}
+
+export function SupportPage({ lang }: { lang: Lang }) {
+  const t = INFO_TRANSLATIONS[lang];
+  useEffect(scrollToTop, []);
+  return (
+    <div className="info-page">
+      <div className="container">
+        <h1 className="info-page-heading">{t.support.heading}</h1>
+        <SupportContent data={t.support} />
+      </div>
+    </div>
+  );
+}
+
+export function FaqPage({ lang }: { lang: Lang }) {
+  const t = INFO_TRANSLATIONS[lang];
+  useEffect(scrollToTop, []);
+  return (
+    <div className="info-page">
+      <div className="container">
+        <h1 className="info-page-heading">{t.faqHeading}</h1>
+        <FaqList items={t.faq} />
       </div>
     </div>
   );
