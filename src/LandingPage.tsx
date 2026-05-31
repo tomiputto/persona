@@ -67,7 +67,8 @@ const translations = {
       ],
     },
     footer: {
-      links: ['Home', 'Talents', 'My Talents', 'Company', 'FAQ', 'Support', 'News', 'Investors', 'Careers', 'Newsletter'],
+      links: ['Home', 'Company', 'Support', 'FAQ'],
+      legalLinks: ['Privacy Policy', 'Cookie Policy', 'Terms of Service', 'iOS EULA Addendum'],
       copyright: '© 2026 — Copyright Persona Entertainment Oy',
     },
   },
@@ -125,7 +126,8 @@ const translations = {
       ],
     },
     footer: {
-      links: ['Etusivu', 'Talentit', 'Omat Talentit', 'Yritys', 'UKK', 'Tuki', 'Uutiset', 'Sijoittajat', 'Avoimet työpaikat', 'Uutiskirje'],
+      links: ['Etusivu', 'Yritys', 'Tuki', 'UKK'],
+      legalLinks: ['Tietosuojakäytäntö', 'Evästekäytäntö', 'Käyttöehdot', 'iOS EULA Addendum'],
       copyright: '© 2026 — Copyright Persona Entertainment Oy',
     },
   },
@@ -139,7 +141,8 @@ type T = typeof translations.en;
 // ============================================================
 
 
-const FOOTER_LINKS_HREFS = ['#', '#talents', '#my-talents', '#company', '#faq', '#support', '#', '#', '#', '#newsletter'];
+const FOOTER_LINKS_HREFS = ['#', '#company', '#support', '#faq'];
+const FOOTER_LEGAL_HREFS = ['#', '#', '#', '#'];
 
 const SOCIAL_CHANNELS = [
   { Icon: InstagramIcon, color: 'rgba(195, 42, 163, 0.18)', border: 'rgba(195, 42, 163, 0.45)' },
@@ -545,6 +548,35 @@ function HeroSection({ t }: { t: T }) {
 }
 
 // ============================================================
+// APP STORES
+// ============================================================
+
+function AppStoresSection() {
+  return (
+    <section className="appstores-section" aria-label="Download the app">
+      <div className="container">
+        <div className="appstores-row">
+          <button className="store-btn" aria-label="Get it on Google Play">
+            <div className="store-icon"><GooglePlayIcon /></div>
+            <div className="store-text">
+              <span className="store-get">GET IT ON</span>
+              <span className="store-name">Google Play</span>
+            </div>
+          </button>
+          <button className="store-btn" aria-label="Download on the App Store">
+            <div className="store-icon"><AppleIcon /></div>
+            <div className="store-text">
+              <span className="store-get">Download on the</span>
+              <span className="store-name">App Store</span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================================
 // SOCIAL MEDIA
 // ============================================================
 
@@ -745,13 +777,22 @@ function Footer({ t }: { t: T }) {
           ))}
         </nav>
 
+        <nav className="footer-legal-nav" aria-label="Legal links">
+          {t.footer.legalLinks.map((link, i) => (
+            <a key={link} href={FOOTER_LEGAL_HREFS[i] ?? '#'} className="footer-legal-link">
+              {link}
+            </a>
+          ))}
+        </nav>
+
         <div className="footer-bottom">
           <div className="social-links" aria-label="Social media links">
-            <a href="#" className="social-btn" aria-label="Facebook"><FacebookIcon /></a>
             <a href="#" className="social-btn" aria-label="Instagram"><InstagramIcon /></a>
-            <a href="#" className="social-btn" aria-label="LinkedIn"><LinkedInIcon /></a>
-            <a href="#" className="social-btn" aria-label="Snapchat"><SnapchatIcon /></a>
+            <a href="#" className="social-btn" aria-label="Threads"><ThreadsIcon /></a>
             <a href="#" className="social-btn" aria-label="TikTok"><TikTokIcon /></a>
+            <a href="#" className="social-btn" aria-label="Facebook"><FacebookIcon /></a>
+            <a href="#" className="social-btn" aria-label="YouTube"><YouTubeIcon /></a>
+            <a href="#" className="social-btn" aria-label="LinkedIn"><LinkedInIcon /></a>
           </div>
 
           <div className="app-stores" aria-label="Download on app stores">
@@ -872,6 +913,7 @@ export default function LandingPage() {
           ) : (
             <>
               <HeroSection t={t} />
+              <AppStoresSection />
               <SocialMediaSection t={t} />
               <PersonaSection t={t} />
               <HowItWorksSection t={t} />
