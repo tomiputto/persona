@@ -3,6 +3,7 @@
   background: #000;
   padding-top: 80px;
   padding-bottom: 120px;
+  overflow-x: clip;
 }
 
 /* ============================================================
@@ -380,13 +381,346 @@
   text-align: center;
 }
 
+/* ============================================================
+   COMPANY TIMELINE
+   ============================================================ */
+.company-timeline {
+  width: 100%;
+  --timeline-dot-size: 19px;
+  --timeline-axis-col: 24px;
+  --timeline-dot-gap: 16px;
+  --timeline-connector-length: 32px;
+}
+
+.company-timeline-heading {
+  font-family: 'Syne', sans-serif;
+  font-weight: 400;
+  font-size: clamp(24px, 2.5vw, 32px);
+  line-height: 1.14;
+  color: var(--accent);
+  margin: 64px 0 67px;
+  text-align: center;
+}
+
+.company-timeline-inner {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.company-timeline-spine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 32px;
+  width: var(--timeline-axis-col);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.company-timeline-spine-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--accent) 8%,
+    var(--accent) 100%
+  );
+}
+
+.company-timeline-spine-arrow {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 12px;
+  height: 12px;
+  border-right: 1px solid var(--accent);
+  border-bottom: 1px solid var(--accent);
+  transform: translateX(calc(-50% + 0.5px)) rotate(45deg);
+}
+
+.company-timeline-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.company-timeline-item {
+  --timeline-title-offset: calc(32px + 14px);
+  display: grid;
+  grid-template-columns: var(--timeline-axis-col) minmax(0, 1fr);
+  column-gap: 20px;
+  align-items: start;
+  position: relative;
+  min-width: 0;
+}
+
+.company-timeline-axis {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: center;
+  align-self: start;
+  position: relative;
+  width: var(--timeline-dot-size);
+  height: var(--timeline-dot-size);
+  margin-top: calc(var(--timeline-title-offset) - (var(--timeline-dot-size) * 0.5));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.company-timeline-dot {
+  width: var(--timeline-dot-size);
+  height: var(--timeline-dot-size);
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.company-timeline-card-wrap {
+  position: relative;
+  grid-column: 2;
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+}
+
+@media (max-width: 1023px) {
+  .company-timeline {
+    --timeline-axis-col: 24px;
+  }
+
+  .company-timeline-item {
+    --timeline-item-col-gap: 24px;
+    column-gap: var(--timeline-item-col-gap);
+  }
+
+  /* Pallon oikea reuna → kortin vasen reuna (kiinni kortissa) */
+  .company-timeline-card-wrap::before {
+    content: '';
+    position: absolute;
+    right: 100%;
+    top: var(--timeline-title-offset);
+    width: calc(
+      var(--timeline-item-col-gap) +
+      (var(--timeline-axis-col) * 0.5) -
+      (var(--timeline-dot-size) * 0.5)
+    );
+    height: 1px;
+    transform: translateY(-50%);
+    background: linear-gradient(
+      to left,
+      var(--card-border, rgba(255, 255, 255, 0.12)),
+      var(--accent)
+    );
+    z-index: 1;
+    pointer-events: none;
+  }
+}
+
+/* Desktop zig-zag timeline */
+@media (min-width: 1024px) {
+  .company-timeline {
+    --timeline-dot-gap: 16px;
+    --timeline-connector-length: 84px;
+    --timeline-col-gap: 72px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .company-timeline-inner {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  .company-timeline-spine {
+    left: 50%;
+    width: var(--timeline-axis-col);
+    transform: translateX(-50%);
+  }
+
+  .company-timeline-item {
+    --timeline-title-offset: calc(48px + 16px);
+    grid-template-columns: minmax(0, 1fr) var(--timeline-axis-col) minmax(0, 1fr);
+    column-gap: var(--timeline-col-gap);
+  }
+
+  .company-timeline-item:nth-child(even) {
+    margin-top: -118px;
+    z-index: 2;
+  }
+
+  .company-timeline-item:nth-child(odd):not(:first-child) {
+    margin-top: -72px;
+    z-index: 1;
+  }
+
+  /* Tighten gap between cards 1 and 3 (left column) */
+  .company-timeline-item:nth-child(3) {
+    margin-top: -92px;
+  }
+
+  /*
+    On very wide viewports cards get wider → text wraps less → cards get shorter.
+    Cap card width to keep vertical rhythm stable.
+  */
+  .company-timeline-item--right .company-timeline-card-wrap,
+  .company-timeline-item--left .company-timeline-card-wrap {
+    justify-self: start;
+    width: min(520px, 100%);
+  }
+
+  .company-timeline-item--left .company-timeline-card-wrap {
+    justify-self: end;
+  }
+
+  .company-timeline-axis {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: center;
+    align-self: start;
+    margin-top: calc(var(--timeline-title-offset) - (var(--timeline-dot-size) * 0.5));
+  }
+
+  .company-timeline-axis::after {
+    display: none;
+  }
+
+  .company-timeline-item--right .company-timeline-axis::before {
+    display: none;
+  }
+
+  /* Desktop connectors: card edge → toward dot (stops before dot via length + col-gap) */
+  .company-timeline-item--left .company-timeline-card-wrap::after {
+    content: '';
+    position: absolute;
+    left: 100%;
+    top: var(--timeline-title-offset);
+    width: var(--timeline-connector-length);
+    height: 1px;
+    transform: translateY(-50%);
+    background: linear-gradient(
+      to right,
+      var(--card-border, rgba(255, 255, 255, 0.12)),
+      var(--accent)
+    );
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .company-timeline-item--right .company-timeline-card-wrap::before {
+    content: '';
+    position: absolute;
+    right: 100%;
+    top: var(--timeline-title-offset);
+    width: var(--timeline-connector-length);
+    height: 1px;
+    transform: translateY(-50%);
+    background: linear-gradient(
+      to left,
+      var(--card-border, rgba(255, 255, 255, 0.12)),
+      var(--accent)
+    );
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .company-timeline-item--right .company-timeline-card-wrap {
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: stretch;
+    align-self: start;
+    max-width: none;
+    width: 100%;
+  }
+
+  .company-timeline-item--left .company-timeline-card-wrap {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: stretch;
+    align-self: start;
+    max-width: none;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1400px) {
+  /* Extra tightening only when cards become noticeably shorter */
+  .company-timeline-item:nth-child(3) {
+    margin-top: -112px;
+  }
+}
+
+/* Matches .how-card on the home page */
+.company-timeline-card {
+  background: var(--card-bg, rgba(217, 217, 217, 0.08));
+  border: 1px solid var(--card-border, rgba(255, 255, 255, 0.12));
+  border-radius: 12px;
+  padding: 48px 32px;
+  box-shadow: var(--card-shadow, 0 0 25px rgba(255, 255, 255, 0.14));
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.company-timeline-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.company-timeline-card-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--accent);
+  margin: 0;
+}
+
+.company-timeline-card-date {
+  font-family: 'Syne', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+  color: #fff;
+  opacity: 0.6;
+  margin: 0;
+}
+
+.company-timeline-card-body {
+  font-family: 'Syne', sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 24px;
+  letter-spacing: 0.4px;
+  color: #fff;
+  margin: 0;
+}
+
 .company-founders-heading {
   font-family: 'Syne', sans-serif;
   font-weight: 400;
   font-size: clamp(24px, 2.5vw, 32px);
   line-height: 1.14;
   color: var(--accent);
-  margin: 0;
+  margin: 100px 0 0;
   text-align: center;
 }
 
@@ -589,5 +923,29 @@
 
   .company-founder-role {
     font-size: 20px;
+  }
+
+  .company-timeline-heading {
+    margin-top: 41px;
+    margin-bottom: 46px;
+  }
+
+  .company-founders-heading {
+    margin-top: 64px;
+  }
+
+  .company-timeline-list {
+    padding-bottom: 0;
+  }
+
+  .company-timeline-card {
+    padding: 32px 24px;
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+
+  .company-timeline-card-title {
+    font-size: 22px;
+    line-height: 28px;
   }
 }

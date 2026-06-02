@@ -44,6 +44,39 @@ const INFO_TRANSLATIONS = {
     company: {
       slogan: 'Company built for meaningful connections',
       description: 'Persona redefines how we communicate across time and place. We make it possible to interact with the unattainable, by combining cutting edge technology, emotional intelligence and human connections.',
+      timelineHeading: 'Our journey so far',
+      timeline: [
+        {
+          side: 'left' as const,
+          title: 'The idea',
+          date: 'June 2023',
+          body: 'A simple observation sparked a bigger vision. We saw an everyday problem that deserved a better solution.',
+        },
+        {
+          side: 'right' as const,
+          title: 'The first prototype',
+          date: 'July 2025',
+          body: 'Early concepts quickly turned into a working prototype. Testing began with a small group of users and valuable feedback.',
+        },
+        {
+          side: 'left' as const,
+          title: 'Building the Team',
+          date: 'Spring 2026',
+          body: 'Different skills came together around a shared mission. The foundation for growth was put in place.',
+        },
+        {
+          side: 'right' as const,
+          title: 'Early Traction',
+          date: 'June 2026',
+          body: 'The first customers joined and validated the concept. Real-world usage helped shape the product further.',
+        },
+        {
+          side: 'left' as const,
+          title: 'Looking Ahead',
+          date: '2027-',
+          body: 'With a proven foundation, the focus shifted to scaling. New opportunities and bigger goals are now within reach.',
+        },
+      ],
       foundersHeading: 'Persona founders',
       founders: [
         { name: 'Susanna Jääskeläinen', role: 'CEO', photo: susannaImg },
@@ -97,6 +130,39 @@ const INFO_TRANSLATIONS = {
     company: {
       slogan: 'Yritys rakennettu merkityksellisiä yhteyksiä varten',
       description: 'Persona määrittelee uudelleen, kuinka kommunikoimme ajasta ja paikasta riippumatta. Teemme mahdolliseksi vuorovaikuttaa tavoittamattomien kanssa yhdistämällä huippuluokan teknologiaa, tunneälyä ja inhimillisiä yhteyksiä.',
+      timelineHeading: 'Mitä on tapahtunut tähän mennessä',
+      timeline: [
+        {
+          side: 'left' as const,
+          title: 'Idea',
+          date: 'Kesäkuu 2023',
+          body: 'Yksinkertainen havainto herätti suuremman vision. Näimme arkipäiväisen ongelman, joka ansaitsi paremman ratkaisun.',
+        },
+        {
+          side: 'right' as const,
+          title: 'Ensimmäinen prototyyppi',
+          date: 'Heinäkuu 2025',
+          body: 'Varhaiset konseptit muuttuivat nopeasti toimivaksi prototyypiksi. Testaus alkoi pienellä käyttäjäryhmällä ja arvokkaalla palautteella.',
+        },
+        {
+          side: 'left' as const,
+          title: 'Tiimin rakentaminen',
+          date: 'Kevät 2026',
+          body: 'Eri osaamiset yhtyivät yhteisen tehtävän ympärille. Kasvun perusta luotiin.',
+        },
+        {
+          side: 'right' as const,
+          title: 'Varhainen vetovoima',
+          date: 'Kesäkuu 2026',
+          body: 'Ensimmäiset asiakkaat liittyivät ja vahvistivat konseptin. Todellinen käyttö auttoi muokkaamaan tuotetta edelleen.',
+        },
+        {
+          side: 'left' as const,
+          title: 'Katse eteenpäin',
+          date: '2027-',
+          body: 'Vankan perustan myötä painopiste siirtyi skaalaukseen. Uudet mahdollisuudet ja suuremmat tavoitteet ovat nyt ulottuvilla.',
+        },
+      ],
       foundersHeading: 'Personan perustajat',
       founders: [
         { name: 'Susanna Jääskeläinen', role: 'Toimitusjohtaja', photo: susannaImg },
@@ -171,9 +237,18 @@ function FaqList({ items }: { items: FaqItem[] }) {
   );
 }
 
+type TimelineItem = {
+  side: 'left' | 'right';
+  title: string;
+  date: string;
+  body: string;
+};
+
 type CompanyData = {
   slogan: string;
   description: string;
+  timelineHeading: string;
+  timeline: TimelineItem[];
   foundersHeading: string;
   founders: { name: string; role: string; photo: string }[];
   contactTitle: string;
@@ -182,6 +257,43 @@ type CompanyData = {
   legalBtn: string;
 };
 
+function CompanyTimeline({ heading, items }: { heading: string; items: TimelineItem[] }) {
+  return (
+    <section className="company-timeline" aria-labelledby="company-timeline-heading">
+      <h3 className="company-timeline-heading" id="company-timeline-heading">
+        {heading}
+      </h3>
+      <div className="company-timeline-inner">
+        <div className="company-timeline-spine" aria-hidden="true">
+          <div className="company-timeline-spine-line" />
+          <div className="company-timeline-spine-arrow" />
+        </div>
+        <ol className="company-timeline-list">
+          {items.map((item) => (
+            <li
+              key={item.title}
+              className={`company-timeline-item company-timeline-item--${item.side}`}
+            >
+              <div className="company-timeline-axis" aria-hidden="true">
+                <span className="company-timeline-dot" />
+              </div>
+              <div className="company-timeline-card-wrap">
+                <article className="company-timeline-card">
+                  <div className="company-timeline-card-content">
+                    <h3 className="company-timeline-card-title">{item.title}</h3>
+                    <p className="company-timeline-card-date">{item.date}</p>
+                    <p className="company-timeline-card-body">{item.body}</p>
+                  </div>
+                </article>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  );
+}
+
 function CompanyContent({ data }: { data: CompanyData }) {
   return (
     <div className="company-content">
@@ -189,6 +301,8 @@ function CompanyContent({ data }: { data: CompanyData }) {
         <h2 className="company-slogan-title">{data.slogan}</h2>
         <p className="company-slogan-body">{data.description}</p>
       </div>
+
+      <CompanyTimeline heading={data.timelineHeading} items={data.timeline} />
 
       <h3 className="company-founders-heading">{data.foundersHeading}</h3>
 
