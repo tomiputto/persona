@@ -6,6 +6,10 @@ import bgImg from '../BG.png';
 import personaVideo from '../PERSONA_INAPP_S_16x9.mp4';
 import videoPoster from '../video-poster.jpg';
 import logoImg from '../logo.png';
+import appStoreBadgeEn from '../Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg';
+import appStoreBadgeFi from '../Download_on_the_App_Store_Badge_FI_RGB_blk_100217.svg';
+import googlePlayBadgeEn from '../GetItOnGooglePlay_Badge_Web_color_English.svg';
+import googlePlayBadgeFi from '../GetItOnGooglePlay_Badge_Web_color_Finnish.svg';
 import './LandingPage.css';
 import { CompanyPage, SupportPage, FaqPage } from './InfoPage';
 
@@ -248,14 +252,6 @@ function TikTokIcon() {
   );
 }
 
-function AppleIcon() {
-  return (
-    <svg width="18" height="22" viewBox="0 0 814 1000" fill="white" aria-hidden="true">
-      <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-47.4-148.2-108.4C87 413.4 55.6 251.5 55.6 198.6c0-62.6 19.9-120.8 57.8-164.5C151.7 8.3 207.7-18 263.8-18c65.2 0 101 42.6 162.9 42.6 60.1 0 98.5-42.6 166.6-42.6 53.9 0 105.7 23.1 143.4 58.8l-2.6-2.2zM563.9-100c-23.6 22.2-42.9 54.4-42.9 86.6 0 4.8.6 9.5 1.3 13.4 2.6.6 6.5.6 10.3.6 23.6 0 50.7-13.4 69.2-34.9 20.6-23.1 34.8-56.5 34.8-89.7 0-4.5-.6-9-1.3-13.8-3.2-.6-6.5-.6-9.7-.6-22.4 0-50.1 13.4-61.7 38.4z" />
-    </svg>
-  );
-}
-
 function ThreadsIcon() {
   return (
     <svg width="22" height="22" viewBox="0 0 192 192" fill="white" aria-hidden="true">
@@ -268,17 +264,6 @@ function YouTubeIcon() {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="white" aria-hidden="true">
       <path d="M22.54 6.42a2.83 2.83 0 00-2-1.99C18.88 4 12 4 12 4s-6.88 0-8.55.43a2.83 2.83 0 00-2 2A29.94 29.94 0 001 12a29.94 29.94 0 00.46 5.58 2.83 2.83 0 002 1.99C5.12 20 12 20 12 20s6.88 0 8.55-.43a2.83 2.83 0 002-1.99A29.94 29.94 0 0023 12a29.94 29.94 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" />
-    </svg>
-  );
-}
-
-function GooglePlayIcon() {
-  return (
-    <svg width="20" height="22" viewBox="0 0 512 512" fill="none" aria-hidden="true">
-      <path d="M48 18L298 256 48 494V18z" fill="#EA4335" />
-      <path d="M48 18l250 238 64-60L98 18H48z" fill="#FBBC04" />
-      <path d="M48 494l250-238 64 60L98 494H48z" fill="#34A853" />
-      <path d="M362 196l-64 60 64 60 74-42a30 30 0 000-36l-74-42z" fill="#4285F4" />
     </svg>
   );
 }
@@ -551,25 +536,41 @@ function HeroSection({ t }: { t: T }) {
 // APP STORES
 // ============================================================
 
-function AppStoresSection() {
+function GooglePlayBadge({ lang, size }: { lang: Lang; size: 'hero' | 'footer' }) {
+  const src = lang === 'fi' ? googlePlayBadgeFi : googlePlayBadgeEn;
+  const label = lang === 'fi' ? 'Hanki se Google Playsta' : 'Get it on Google Play';
+  return (
+    <a
+      href="#"
+      className={`store-badge store-badge--${size}`}
+      aria-label={label}
+    >
+      <img src={src} alt="" />
+    </a>
+  );
+}
+
+function AppStoreBadge({ lang, size }: { lang: Lang; size: 'hero' | 'footer' }) {
+  const src = lang === 'fi' ? appStoreBadgeFi : appStoreBadgeEn;
+  const label = lang === 'fi' ? 'Lataa App Storesta' : 'Download on the App Store';
+  return (
+    <a
+      href="#"
+      className={`store-badge store-badge--${size}`}
+      aria-label={label}
+    >
+      <img src={src} alt="" />
+    </a>
+  );
+}
+
+function AppStoresSection({ lang }: { lang: Lang }) {
   return (
     <section className="appstores-section" aria-label="Download the app">
       <div className="container">
         <div className="appstores-row">
-          <button className="store-btn" aria-label="Get it on Google Play">
-            <div className="store-icon"><GooglePlayIcon /></div>
-            <div className="store-text">
-              <span className="store-get">GET IT ON</span>
-              <span className="store-name">Google Play</span>
-            </div>
-          </button>
-          <button className="store-btn" aria-label="Download on the App Store">
-            <div className="store-icon"><AppleIcon /></div>
-            <div className="store-text">
-              <span className="store-get">Download on the</span>
-              <span className="store-name">App Store</span>
-            </div>
-          </button>
+          <GooglePlayBadge lang={lang} size="hero" />
+          <AppStoreBadge lang={lang} size="hero" />
         </div>
       </div>
     </section>
@@ -761,7 +762,7 @@ function NewsletterSection({ t }: { t: T }) {
 // FOOTER
 // ============================================================
 
-function Footer({ t }: { t: T }) {
+function Footer({ t, lang }: { t: T; lang: Lang }) {
   return (
     <footer className="footer" role="contentinfo">
       <div className="container">
@@ -796,20 +797,8 @@ function Footer({ t }: { t: T }) {
           </div>
 
           <div className="app-stores" aria-label="Download on app stores">
-            <button className="store-btn" aria-label="Get it on Google Play">
-              <div className="store-icon"><GooglePlayIcon /></div>
-              <div className="store-text">
-                <span className="store-get">GET IT ON</span>
-                <span className="store-name">Google Play</span>
-              </div>
-            </button>
-            <button className="store-btn" aria-label="Download on the App Store">
-              <div className="store-icon"><AppleIcon /></div>
-              <div className="store-text">
-                <span className="store-get">Download on the</span>
-                <span className="store-name">App Store</span>
-              </div>
-            </button>
+            <GooglePlayBadge lang={lang} size="footer" />
+            <AppStoreBadge lang={lang} size="footer" />
           </div>
         </div>
 
@@ -913,7 +902,7 @@ export default function LandingPage() {
           ) : (
             <>
               <HeroSection t={t} />
-              <AppStoresSection />
+              <AppStoresSection lang={lang} />
               <SocialMediaSection t={t} />
               <PersonaSection t={t} />
               <HowItWorksSection t={t} />
@@ -921,7 +910,7 @@ export default function LandingPage() {
             </>
           )}
         </main>
-        <Footer t={t} />
+        <Footer t={t} lang={lang} />
       </div>
     </PasswordGate>
   );
