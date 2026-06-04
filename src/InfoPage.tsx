@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import susannaImg from '../susanna.png';
 import emmiImg from '../emmi.png';
 import './InfoPage.css';
@@ -81,6 +81,15 @@ const INFO_TRANSLATIONS = {
       founders: [
         { name: 'Susanna Jääskeläinen', role: 'CEO', photo: susannaImg },
         { name: 'Emmi Sainio', role: 'CMO', photo: emmiImg },
+      ],
+      employeesHeading: 'Employees',
+      employees: [
+        { name: 'Alex Korhonen', role: 'Product Designer', photo: susannaImg },
+        { name: 'Maria Virtanen', role: 'Software Engineer', photo: emmiImg },
+        { name: 'Joonas Mäkinen', role: 'Customer Success', photo: susannaImg },
+        { name: 'Laura Heinonen', role: 'Content Specialist', photo: emmiImg },
+        { name: 'Pekka Nieminen', role: 'Data Analyst', photo: susannaImg },
+        { name: 'Sanna Laine', role: 'Operations Lead', photo: emmiImg },
       ],
       contactTitle: 'Interested in hearing more?',
       contactBtn: 'Contact us',
@@ -168,6 +177,15 @@ const INFO_TRANSLATIONS = {
         { name: 'Susanna Jääskeläinen', role: 'Toimitusjohtaja', photo: susannaImg },
         { name: 'Emmi Sainio', role: 'Markkinointijohtaja', photo: emmiImg },
       ],
+      employeesHeading: 'Työntekijät',
+      employees: [
+        { name: 'Alex Korhonen', role: 'Tuotesuunnittelija', photo: susannaImg },
+        { name: 'Maria Virtanen', role: 'Ohjelmistokehittäjä', photo: emmiImg },
+        { name: 'Joonas Mäkinen', role: 'Asiakaspalvelu', photo: susannaImg },
+        { name: 'Laura Heinonen', role: 'Sisällöntuottaja', photo: emmiImg },
+        { name: 'Pekka Nieminen', role: 'Data-analyytikko', photo: susannaImg },
+        { name: 'Sanna Laine', role: 'Operatiivinen johtaja', photo: emmiImg },
+      ],
       contactTitle: 'Haluatko kuulla lisää?',
       contactBtn: 'Ota yhteyttä',
       legalTitle: 'Juridiset ehdot',
@@ -192,45 +210,21 @@ const INFO_TRANSLATIONS = {
 // SHARED COMPONENTS
 // ============================================================
 
-function PlusIcon({ open }: { open: boolean }) {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"
-      style={{ transition: 'transform 0.2s', transform: open ? 'rotate(45deg)' : 'none' }}>
-      <path d="M8 1v14M1 8h14" stroke="#000" strokeWidth="2" strokeLinecap="round" />
-    </svg>
-  );
-}
-
 type FaqItem = { q: string; a: string; linkText?: string; linkHash?: string };
 
 function FaqList({ items }: { items: FaqItem[] }) {
-  const [open, setOpen] = useState<number | null>(null);
-
   return (
     <ul className="info-faq-list">
       {items.map((item, i) => (
         <li key={i} className="info-faq-item">
-          <button
-            className="info-faq-question"
-            onClick={() => setOpen(open === i ? null : i)}
-            aria-expanded={open === i}
-          >
-            <span className="info-faq-icon">
-              <PlusIcon open={open === i} />
-            </span>
-            <span>{item.q}</span>
-          </button>
-          <div className={`info-faq-answer-wrap${open === i ? ' open' : ''}`}>
-            <div className="info-faq-answer-inner">
-              <p className="info-faq-answer">{item.a}</p>
-              {item.linkText && item.linkHash && (
-                <a href={`#${item.linkHash}`} className="info-faq-link">
-                  {item.linkText} →
-                </a>
-              )}
-            </div>
-          </div>
-          <div className="info-faq-divider" />
+          <h2 className="info-faq-question">{item.q}</h2>
+          <p className="info-faq-answer">{item.a}</p>
+          {item.linkText && item.linkHash && (
+            <a href={`#${item.linkHash}`} className="info-faq-link">
+              {item.linkText} →
+            </a>
+          )}
+          {i < items.length - 1 && <div className="info-faq-divider" aria-hidden="true" />}
         </li>
       ))}
     </ul>
@@ -244,18 +238,41 @@ type TimelineItem = {
   body: string;
 };
 
+type PersonCard = { name: string; role: string; photo: string };
+
 type CompanyData = {
   slogan: string;
   description: string;
   timelineHeading: string;
   timeline: TimelineItem[];
   foundersHeading: string;
-  founders: { name: string; role: string; photo: string }[];
+  founders: PersonCard[];
+  employeesHeading: string;
+  employees: PersonCard[];
   contactTitle: string;
   contactBtn: string;
   legalTitle: string;
   legalBtn: string;
 };
+
+function CompanyPersonCard({
+  person,
+  variant,
+}: {
+  person: PersonCard;
+  variant: 'founder' | 'employee';
+}) {
+  const prefix = variant === 'founder' ? 'company-founder' : 'company-employee';
+  return (
+    <div className={`${prefix}-card`}>
+      <div className={`${prefix}-avatar-wrap`}>
+        <img src={person.photo} alt={person.name} className={`${prefix}-avatar`} />
+      </div>
+      <p className={`${prefix}-name`}>{person.name}</p>
+      <p className={`${prefix}-role`}>{person.role}</p>
+    </div>
+  );
+}
 
 function CompanyTimeline({ heading, items }: { heading: string; items: TimelineItem[] }) {
   return (
@@ -308,13 +325,15 @@ function CompanyContent({ data }: { data: CompanyData }) {
 
       <div className="company-founders-grid">
         {data.founders.map((f) => (
-          <div key={f.name} className="company-founder-card">
-            <div className="company-founder-avatar-wrap">
-              <img src={f.photo} alt={f.name} className="company-founder-avatar" />
-            </div>
-            <p className="company-founder-name">{f.name}</p>
-            <p className="company-founder-role">{f.role}</p>
-          </div>
+          <CompanyPersonCard key={f.name} person={f} variant="founder" />
+        ))}
+      </div>
+
+      <h3 className="company-employees-heading">{data.employeesHeading}</h3>
+
+      <div className="company-employees-grid">
+        {data.employees.map((e) => (
+          <CompanyPersonCard key={e.name} person={e} variant="employee" />
         ))}
       </div>
 
