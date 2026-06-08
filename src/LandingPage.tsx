@@ -40,11 +40,9 @@ const translations = {
       ],
       footerParts: [
         'Do you have questions about Persona? Check out our ',
-        ' section or get in touch. If you\'re interested in investing in Persona Entertainment, please visit our ',
-        ' section.',
+        ' section or get in touch.',
       ],
       footerFaqLabel: 'FAQ',
-      footerInvestorsLabel: 'Investors',
     },
     newsletter: {
       heading: 'Newsletter',
@@ -99,11 +97,9 @@ const translations = {
       ],
       footerParts: [
         'Onko sinulla kysyttävää Personasta? Tutustu ',
-        '-osioomme tai ota yhteyttä. Jos olet kiinnostunut sijoittamaan Persona Entertainmentiin, vieraile ',
-        '-osiossa.',
+        '-osioomme tai ota yhteyttä.',
       ],
       footerFaqLabel: 'UKK',
-      footerInvestorsLabel: 'Sijoittajat',
     },
     newsletter: {
       heading: 'Uutiskirje',
@@ -680,8 +676,6 @@ function HowItWorksSection({ t }: { t: T }) {
           {t.how.footerParts[0]}
           <a href="#faq" className="how-footer-link">{t.how.footerFaqLabel}</a>
           {t.how.footerParts[1]}
-          <a href="#" className="how-footer-link">{t.how.footerInvestorsLabel}</a>
-          {t.how.footerParts[2]}
         </p>
       </div>
     </section>

@@ -82,15 +82,6 @@ const INFO_TRANSLATIONS = {
         { name: 'Susanna Jääskeläinen', role: 'CEO', photo: susannaImg },
         { name: 'Emmi Sainio', role: 'CMO', photo: emmiImg },
       ],
-      employeesHeading: 'Employees',
-      employees: [
-        { name: 'Alex Korhonen', role: 'Product Designer', photo: susannaImg },
-        { name: 'Maria Virtanen', role: 'Software Engineer', photo: emmiImg },
-        { name: 'Joonas Mäkinen', role: 'Customer Success', photo: susannaImg },
-        { name: 'Laura Heinonen', role: 'Content Specialist', photo: emmiImg },
-        { name: 'Pekka Nieminen', role: 'Data Analyst', photo: susannaImg },
-        { name: 'Sanna Laine', role: 'Operations Lead', photo: emmiImg },
-      ],
       contactTitle: 'Interested in hearing more?',
       contactBtn: 'Contact us',
       legalTitle: 'Legal conditions',
@@ -177,15 +168,6 @@ const INFO_TRANSLATIONS = {
         { name: 'Susanna Jääskeläinen', role: 'Toimitusjohtaja', photo: susannaImg },
         { name: 'Emmi Sainio', role: 'Markkinointijohtaja', photo: emmiImg },
       ],
-      employeesHeading: 'Työntekijät',
-      employees: [
-        { name: 'Alex Korhonen', role: 'Tuotesuunnittelija', photo: susannaImg },
-        { name: 'Maria Virtanen', role: 'Ohjelmistokehittäjä', photo: emmiImg },
-        { name: 'Joonas Mäkinen', role: 'Asiakaspalvelu', photo: susannaImg },
-        { name: 'Laura Heinonen', role: 'Sisällöntuottaja', photo: emmiImg },
-        { name: 'Pekka Nieminen', role: 'Data-analyytikko', photo: susannaImg },
-        { name: 'Sanna Laine', role: 'Operatiivinen johtaja', photo: emmiImg },
-      ],
       contactTitle: 'Haluatko kuulla lisää?',
       contactBtn: 'Ota yhteyttä',
       legalTitle: 'Juridiset ehdot',
@@ -247,8 +229,6 @@ type CompanyData = {
   timeline: TimelineItem[];
   foundersHeading: string;
   founders: PersonCard[];
-  employeesHeading: string;
-  employees: PersonCard[];
   contactTitle: string;
   contactBtn: string;
   legalTitle: string;
@@ -257,12 +237,10 @@ type CompanyData = {
 
 function CompanyPersonCard({
   person,
-  variant,
 }: {
   person: PersonCard;
-  variant: 'founder' | 'employee';
 }) {
-  const prefix = variant === 'founder' ? 'company-founder' : 'company-employee';
+  const prefix = 'company-founder';
   return (
     <div className={`${prefix}-card`}>
       <div className={`${prefix}-avatar-wrap`}>
@@ -325,17 +303,10 @@ function CompanyContent({ data }: { data: CompanyData }) {
 
       <div className="company-founders-grid">
         {data.founders.map((f) => (
-          <CompanyPersonCard key={f.name} person={f} variant="founder" />
+          <CompanyPersonCard key={f.name} person={f} />
         ))}
       </div>
 
-      <h3 className="company-employees-heading">{data.employeesHeading}</h3>
-
-      <div className="company-employees-grid">
-        {data.employees.map((e) => (
-          <CompanyPersonCard key={e.name} person={e} variant="employee" />
-        ))}
-      </div>
 
       <div className="company-cta-grid">
         <div className="company-cta-card">
